@@ -15,11 +15,15 @@ class View < ApplicationRecord
                                           ")
   end
   def self.myviews
-    ActiveRecord::Base.connection.execute("SELECT created_at, week_number,
+    ActiveRecord::Base.connection.execute("
+SELECT created_at, week_number,
              max(views) AS views,
-             ROW_NUMBER() OVER(ORDER BY views DESC) AS row_number_classement_week,
+             ROW_NUMBER() OVER(ORDER BY sum(case when v.id is not null then 1 else 0 end) DESC) AS row_number_classement_week,
+             ROW_NUMBER() OVER(ORDER BY max(sum(case when v.id is not null then 1 else 0 end)) DESC) AS best_row_number_classement_week,
+             sum(case when (ROW_NUMBER() OVER(ORDER BY max(sum(case when v.id is not null then 1 else 0 end)) DESC)) < 16 then 1 else 0 end) AS nbr_semaine_top,
                     clip_id
-    FROM (SELECT v.created_at as created_at, strftime('%W', v.created_at) AS week_number,
+    FROM (SELECT v.id, v.created_at as created_at, strftime('%W', v.created_at) AS week_number,
+
                        sum(case when v.id is not null then 1 else 0 end) AS views,
                                     clip_id
           FROM views v
