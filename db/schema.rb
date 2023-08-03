@@ -10,13 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_12_120322) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_01_185641) do
   create_table "clips", force: :cascade do |t|
     t.integer "cat_id"
+    t.string "title"
+    t.text "description"
     t.string "link"
     t.string "email"
     t.string "region"
     t.boolean "video"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "title"
+    t.string "image"
+    t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

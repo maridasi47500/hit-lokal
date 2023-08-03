@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :posts
   resources :clips
   get 'ajouter/clip'
   get "ajouter.php", to: 'ajouter#clip'
