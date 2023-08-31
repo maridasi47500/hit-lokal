@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_01_185641) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_31_010107) do
+  create_table "artists", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "clips", force: :cascade do |t|
     t.integer "cat_id"
     t.string "title"
@@ -21,6 +27,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_01_185641) do
     t.boolean "video"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "sortie"
+  end
+
+  create_table "clipsartists", force: :cascade do |t|
+    t.integer "clip_id"
+    t.integer "artist_id"
   end
 
   create_table "posts", force: :cascade do |t|

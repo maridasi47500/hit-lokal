@@ -9,9 +9,9 @@
 					 <br />
 					 <br />
 					                     <h2 style="width: 50%; text-align: leftt;"class="h2-heading-details"  style="z-index:2">
-                      <a href="/artiste.php?ar=3747" title="Lizi - loverdose">
-                          Lizi                          </a> loverdose</h2>
-                     <h3 style="width: 40%; text-align: right; color:gold"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;&nbsp;12 Vues</h3>
+                      <%@clip.artists.each do |artist|%><a href="/artiste.php?ar=<%=artist.id%>" title="<%=@clip.title%>">
+                          <%=artist.name%>                          </a><%end%> <%=@clip.mytitle%></h2>
+                     <h3 style="width: 40%; text-align: right; color:gold"><i class="fa fa-eye" aria-hidden="true"></i><%=t("monclip.vue",count: @clip.views.count)%></h3>
 					<br />
 					 <br />
 					</div>
@@ -21,7 +21,7 @@
                     <div class="row">
 
                     <div class="video-responsive">
-                   	<iframe width="80%" height="548" src="https://www.youtube.com/embed/K1EuGg9e7ow?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+                   	<iframe width="80%" height="548" src="https://www.youtube.com/embed/<%=@clip.link%>?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
 					</div>
 
                 </div> <!-- end of col -->
@@ -32,7 +32,7 @@
 					Partager
 					</div>
 					<!-- Facebook -->
-                       	   <button style="background:transparent!important; border:0!important" class="button" data-sharer="facebook" data-title="hit-lokal!" data-hashtag="hitlokal" data-url="https://hit-lokal.com/videos.php?vid=lizi-loverdose">
+                       	   <button style="background:transparent!important; border:0!important" class="button" data-sharer="facebook" data-title="hit-lokal!" data-hashtag="hitlokal" data-url="https://hit-lokal.com/videos.php?vid=<%=@clip.title.parameterize%>">
 			        <i class="fab fa-facebook-f" style="background: #ffd800;  padding: 15px 20px; font-size: 25px; border-radius: 100%; color: #FFF"></i>
 			         </button>
                     <!-- Facebook -->
@@ -51,93 +51,7 @@
 
               			   <div class="entry-post" style="white-space: pre-wrap;">
                       
-                      #Lizi #Loverdose #zouk2023 
-
-Lizi - "Loverdose" 
-
-Retrouve "Loverdose" sur toutes les plateformes: 
-
-Contact: Booking : maxime.bureau12@gmail.com 
-
-Retrouve Lizi sur les réseaux: 
-Facebook: <a target="_blank" rel="nofollow" href="https://www.facebook.com/manzel.lizi">https://www.facebook.com/manzel.lizi</a> 
-Instagram:<a target="_blank" rel="nofollow" href="https://www.instagram.com/manzel.lizi">https://www.instagram.com/manzel.lizi</a> 
-Tiktok: <a target="_blank" rel="nofollow" href="https://www.tiktok.com/@manzel.lizi">https://www.tiktok.com/@manzel.lizi</a>
-
-Figurants: Quentin Bourgaustruy (Mister Universel France 2023) 
-Réalisation clip: Saïna Manotte - Maxime Manot' 
-
-Auteure: Saïna Manotte 
-Compositeur.e.s: Saïna Manotte / Maxime Manot' 
-Arrangements: Staniski 
-Mastering: PM Mastering 
-Label : Aztec Musique / Au maximum 
-
-#lizi #Loverdose #zouk 
-
-Paroles: 
-Accro, tu es accro
-Il n’y a pas d’autre mot
-De moi, tu as besoin de moi
-T’as besoin de mes bras
-Je suis ton poison préféré
-Je suis ta chanson préférée
-Tu veux chacune de mes notes
-Tu me dégustes, tu me grignotes
-
-Accro, oui tu es accro
-Tu veux ta dose de ma peau
-Sékélé, ça te rend sékélé
-Mais je suis ton poison préféré
-C’est cette douce addiction
-Qui fait que tu frôles la déraison
-Tout ce que je veux, tu le souhaites
-Chaque fois que tu me touches c’est ta fête
-
-Bébé, bébé, bébé on va vers l’overdose
-Bébé c’est la parfaite osmose
-Bébé ça peur mais on ose
-Loverdose !
-
-Bébé, bébé, bébé on va vers l’overdose
-Mais, bébé c’est la parfaite osmose
-Bébé ça peur mais on ose
-Loverdose !
-
-Sans moi, tu ne peux plus vivre
-Je te rends fou, loco, ivre
-Toujours, entre nous c’est toujours
-Même fougue même amour
-Je suis ton poison préféré
-Accro depuis que tu m’as goûtée
-C’est obsessionnel, addictif
-Comme un refrain, un feu d’artifice
-
-Bébé, bébé, bébé on va vers l’overdose
-Bébé c’est la parfaite osmose
-Bébé ça peur mais on ose
-Loverdose !
-
-Bébé, bébé, bébé on va vers l’overdose
-Mais, bébé c’est la parfaite osmose
-Bébé ça peur mais on ose
-Loverdose !
-
-Tu pourrais vouloir la désintoxe
-Tu serais libre et vide, quel paradoxe
-Le sevrage pourrait te sauver
-Mais je suis ton poison préféré
-Ton poison préféré
-
-Bébé, bébé, bébé on va vers l’overdose
-Bébé c’est la parfaite osmose
-Bébé ça peur mais on ose
-Loverdose !
-
-Bébé, bébé, bébé on va vers l’overdose
-Mais, bébé c’est la parfaite osmose
-Bébé ça peur mais on ose
-Loverdose !
+<%=simple_format(@clip.description.html_safe)%>
 					</div>
                     
 
@@ -149,21 +63,23 @@ Loverdose !
 
 
                   <table class="table">
-                    <th colspan="6">A propos de Lizi - loverdose</th>
+                    <th colspan="6">A propos de <%=@clip.title%></th>
 
                     <tr>
                       <td>Titre</td>
-                      <td>Lizi - loverdose</td>
+                      <td><%=@clip.title%></td>
 
                       <td class="break">Artiste(s)</td>
-                       <td><a href="artiste.php?ar=3747">Lizi</a></p></td>
+                        <%@clip.artists.each do |x|%>
+                       <td><a href="artiste.php?ar=<%=x.id%>"><%=x.name%></a></p></td>
+                        <%end%>
                     </tr>
                     <tr>
                       <td class="break">Catégorie(s)</td>
                       <td>Zouk</p></td>
 
                       <td class="break">Sortie le</td>
-                      <td>14/07/2023</td>
+                      <td><%=l(@clip.sortie)%></td>
                     </tr>
 
                   </table>
@@ -171,7 +87,7 @@ Loverdose !
                   <div class="table-responsive">
                   <table class="table table-condensed">
 
-                    <th colspan="6">Statistiques de Lizi - loverdose</th>
+                    <th colspan="6">Statistiques de <%=@clip.title%></th>
 
                     <tr>
                       <td>Meilleure position</td>
@@ -179,7 +95,7 @@ Loverdose !
 
                       <td  class="break">Position la semaine dernière</td>
                       <td >
-                        <span class="label label-stat" title="Position la semaine dernière"><i class="fa fa-caret-square-left fa-1x"></i> New</span>&nbsp;
+                        <span class="label label-stat" title="Position la semaine dernière"><i class="fa fa-caret-square-left fa-1x"></i> <%=@clip.positionsemderniere||"New"%></span>&nbsp;
                       </td>
 
                       <td class="break">Nbr semaine dans le top</td>
