@@ -3,7 +3,7 @@ fr:
     vue:
       zero: No views
       one: "1 view"
-      many: "%{count} views"
+      other: "%{count} views"
   activerecord:
     errors:
       messages:

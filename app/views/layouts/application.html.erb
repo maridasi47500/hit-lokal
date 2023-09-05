@@ -255,9 +255,20 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/ajouter.php">Ajouter votre clip</a>
                     </li>
+<%if user_signed_in?%>
+
+
+                    <li class="nav-item dropdown" id="myDropdown">
+                       <a class="nav-link dropdown-toggle" href="/artistes.php" data-bs-toggle="dropdown"> <%=current_user.username%>  </a>
+                          <ul class="dropdown-menu">
+                            <li><%=button_to('se déconnecter', destroy_user_session_path, method: :delete, class:'dropdown-item')%> </li>
+                        </ul>
+                    </li>
+<%else%>
                                         <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="modal" data-bs-target="#loginform">Connexion</a>
                     </li>
+<%end%>
                     					<li class="nav-item">
 
 						 <form action="/recherche.php" method="GET" id="form-1">
@@ -307,12 +318,12 @@
 
 
 
-                   <form id="login-form"  method="post" role="form" style="display: block;">
+                   <form id="login-form" action="/users"  method="post" role="form" style="display: block;">
                         <div class="form-group">
-                            <input type="text" name="email_login" class="form-control-input" placeholder="Email" required>
+                            <input type="text" name="user[email]" class="form-control-input" placeholder="Email" required>
                         </div>
                         <div class="form-group">
-                            <input type="password" name="password_login" class="form-control-input" placeholder="Mot de passe" required>
+                            <input type="password" name="user[password]" class="form-control-input" placeholder="Mot de passe" required>
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn-solid-reg">Se connecter</button>
@@ -367,22 +378,25 @@
                     </div> <!-- end of social-container -->
 
 					 <div class="text-1">ou utilisez votre email</div>
-                       <form id="register-form" method="post" role="form" >
+                       <form id="register-form" method="post" action="/users" role="form" >
                         <div class="form-group">
-                            <input type="text"  name="username" class="form-control-input" placeholder="Nom" required>
+                            <input type="text"  name="user[username]" class="form-control-input" placeholder="Nom" required>
                         </div>
                         <div class="form-group">
-                            <input type="email" name="email" class="form-control-input" placeholder="Email" required>
+                            <input type="email" name="user[email]" class="form-control-input" placeholder="Email" required>
                         </div>
 						<div class="form-group">
-                            <input type="password" name="password" class="form-control-input" placeholder="Mot de passe" required>
+                            <input type="password" name="user[password]" class="form-control-input" placeholder="Mot de passe" required>
                         </div>
+     <div class="form-group"> 
+                    <input type="password" name="user[password_confirmation]" class="form-control-input" placeholder="confirmation du mot de passe" required> 
+                        </div> 
 
 
                        	<div class="form-group">
                             <div class="d-inline-block me-1">Je suis un artist</div>
                             <div class="form-check form-switch d-inline-block">
-                                <input type="checkbox" name="isArtist" class="form-check-input" id="site_state" style="cursor: pointer;">
+                                <input type="checkbox" name="user[artist]" class="form-check-input" id="site_state" style="cursor: pointer;">
 
                                 </div>
                         </div>
@@ -519,7 +533,98 @@ if (window.innerWidth < 992) {
         </div>
     </div>
 </div>
+ 
+      <!-- login Modal -->
+    <div id="recover" class="modal fade loginform" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="row">
+                <div class="col-lg-10 offset-lg-1">
+                     <a class="navbar-brand logo-image" href="index.html"><img width="96" height="96" src="images/logo-n.png" alt="alternative"></a> 
+                    <!-- Contact Form -->
+					 <h1>Rénitialisation de mot de passe</h1><br />
+		
+					 	  
+		      
+                           
+                   <form id="login-form"  method="post" role="form" style="display: block;">
+                        <div class="form-group">
+                            <input type="text" name="email_recover" class="form-control-input" placeholder="Email" required>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn-solid-reg">Rénitialiser</button>
+                        </div>
+                        <input type="hidden" class="hide" name="token" id="token" value="46da3cc20f2f5f234def367f0fd4ef80">
+                    </form>
+                    <!-- end of contact form -->
+
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+            </div> <!-- end of modal-content -->
+        </div> <!-- end of modal-dialog -->
+    </div> <!-- end of modal -->
+    <!-- end of login modal -->
+ <!-- login Modal -->
+    <div id="loginform" class="modal fade loginform" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="row">
+                <div class="col-lg-10 offset-lg-1">
+                     <a class="navbar-brand logo-image" href="/index.html"><img width="96" height="96" src="images/logo-n.png" alt="alternative"></a>
+                    <!-- Contact Form -->
+					 <h1>Connexion</h1>
+					    <div class="social-container">
+
+                        	            <span class="fa-stack">
+											<a href="https://hit-lokal.com/membres2/oauth.php?provider=facebook" class="social-link">
+
+												  <i class="fas fa-circle fa-stack-2x"></i>
+                                                  <i class="fab fa-facebook-f fa-stack-1x"></i>
+											</a>
+										</span>
+										 <!--
+										<span class="fa-stack">
+											     <a href="https://hit-lokal.com/membres2/oauth.php?provider=google">
+                                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                                    <i class="fab fa-google fa-stack-1x"></i>
+                                                </a>
+										</span>
+										-->
+                    </div> <!-- end of social-container -->
+					 <div class="text-1">ou utilisez votre email</div>
+
+
+
+                   <form id="login-form"  method="post" role="form" style="display: block;">
+                        <div class="form-group">
+                            <input type="text" name="email_login" class="form-control-input" placeholder="Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" name="password_login" class="form-control-input" placeholder="Mot de passe" required>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn-solid-reg">Se connecter</button>
+                        </div>
+                    </form>
+                    <!-- end of contact form -->
+					<div class="login-link-container">
+                            <a href="/recover.php">
+								Mot de passe oublié
+                            </a>
+							  <a  data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#register-form" >
+								Créer un compte
+                            </a>
+					</div>
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+            </div> <!-- end of modal-content -->
+        </div> <!-- end of modal-dialog -->
+    </div> <!-- end of modal -->
+    <!-- end of login modal -->
 <!-- Scripts -->
+<!-- Register Modal -->
 <script src="/js/bootstrap.min.js"></script> <!-- Bootstrap framework -->
 <script src="/js/swiper.min.js"></script> <!-- Swiper for image and text sliders -->
 <script src="/js/purecounter.min.js"></script> <!-- Purecounter counter for statistics numbers -->

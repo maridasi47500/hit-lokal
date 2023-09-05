@@ -112,23 +112,11 @@ if (window.innerWidth < 992) {
 								<label>Catégorie</label>
 								<select name="fcat" id="fcat" class="form-select" aria-label="Default select example">
 								  <option value="0">Choisir une catégorie dans la liste</option>				
-								                                   <option value="10" class="btn-lg-52"> &nbsp;Compas &nbsp;</a>
+
+<%Cat.all.each do |cat|%>
+								                                   <option value="<%=cat.id%>" class="btn-lg-52"> &nbsp;<%=cat.name%>&nbsp;</a>
             
-					                                                <option value="5" class="btn-lg-52"> &nbsp;Dancehall &nbsp;</a>
-            
-					                                                <option value="11" class="btn-lg-52"> &nbsp;Pop &nbsp;</a>
-            
-					                                                <option value="3" class="btn-lg-52"> &nbsp;Rap, Hip-Hop et RnB &nbsp;</a>
-            
-					                                                <option value="4" class="btn-lg-52"> &nbsp;Reggae &nbsp;</a>
-            
-					                                                <option value="8" class="btn-lg-52"> &nbsp;Soca et Bouyon &nbsp;</a>
-            
-					                                                <option value="6" class="btn-lg-52"> &nbsp;Soul &nbsp;</a>
-            
-					                                                <option value="9" class="btn-lg-52"> &nbsp;Traditionnel &nbsp;</a>
-            
-					                                                <option value="1" class="btn-lg-52"> &nbsp;Zouk &nbsp;</a>
+<%end%>
             
 					               
 								</select>

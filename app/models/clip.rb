@@ -1,4 +1,5 @@
 class Clip < ApplicationRecord
+  belongs_to :cat
   has_and_belongs_to_many :artists, :join_table => :clipsartists
   after_validation :myfavclip
   def mytitle
@@ -11,8 +12,26 @@ class Clip < ApplicationRecord
     
   end
   has_many :views
+  def nbsemtop
+    View.mysqlmyid(id)["nbsem_top"]
+  rescue
+    "0"
+  end
+  def meilleurepos
+    View.mysqlmyid(id)["ma_mailleure_position"]
+  rescue
+    ""
+  end
   def positionsemderniere
-    nil
+    View.mysqlmyid(id)["ifnull(ce_classement_semaine_derniere2,0)"]
+  rescue
+    "New"
+  end
+  def title=(x)
+    write_attribute(:title, x.gsub("(clip officiel)","").gsub("(Clip officiel)","").strip.squish)
+  end
+  def title
+    read_attribute(:title)
   end
   def fcat=(x)
     write_attribute(:cat_id, x)

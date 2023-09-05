@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+    get "recover.php", to: "ajouter#user"
+  devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations' }
+  resources :news
   resources :posts
   resources :clips
   get 'ajouter/clip'

@@ -5,3 +5,10 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+require "nokogiri"
+Cat.all.destroy_all
+@x=File.read("./moncode.html")
+@code=Nokogiri::HTML(@x)
+@code.children[1].children[0].children.each do |cat|
+Cat.create(name:cat.inner_html.strip.squish)
+end

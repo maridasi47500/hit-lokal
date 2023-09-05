@@ -76,7 +76,7 @@
                     </tr>
                     <tr>
                       <td class="break">Catégorie(s)</td>
-                      <td>Zouk</p></td>
+                      <td><%=@clip.cat.name%></p></td>
 
                       <td class="break">Sortie le</td>
                       <td><%=l(@clip.sortie)%></td>
@@ -91,7 +91,7 @@
 
                     <tr>
                       <td>Meilleure position</td>
-                      <td><span class="label label-stat" title="Meilleur position dans le top"><i class="fa fa-trophy fa-1x"></i> </span>&nbsp;</td>
+                      <td><span class="label label-stat" title="Meilleur position dans le top"><i class="fa fa-trophy fa-1x"></i> <%=@clip.meilleurepos%></span>&nbsp;</td>
 
                       <td  class="break">Position la semaine dernière</td>
                       <td >
@@ -99,7 +99,7 @@
                       </td>
 
                       <td class="break">Nbr semaine dans le top</td>
-                      <td><span class="label label-stat" title="Nombre de semaines dans le top"><i class="fa fa-clock" aria-hidden="true"></i> 0</i></span></td>
+                      <td><span class="label label-stat" title="Nombre de semaines dans le top"><i class="fa fa-clock" aria-hidden="true"></i> <%=@clip.nbsemtop%></i></span></td>
                     </tr>
 
                   </table>
