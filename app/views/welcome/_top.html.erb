@@ -1,0 +1,8 @@
+     <div class="myclip" style="background: white;border:1px solid black;width:600px;height:300px;z-index:<%=(clip_counter+1)*10%>;position:absolute;top:<%=(clip_counter+1)*100%>px;left:-<%=(clip_counter+1)*4%>px;">
+
+                                                        <img class="img-fluid img-1 "  src="/uploads/<%=clip.image%>" alt="<%=clip.title%>" />
+                                                                <a href="/videos.php?vid=<%=clip.title.parameterize%>" title="<%=clip.title%>">
+                                                                        <i class="fa fa-play fa-play-1" aria-hidden="true"></i>
+                                                                </a>
+                                                 </div>
+

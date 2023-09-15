@@ -2,7 +2,9 @@
 
 
     <!-- Header -->
+<%if @news.length > 0%>
     <header id="header" class="header" style="background-color: black!important; max-height: 100vh">
+
 <main>
 <style>
 main {
@@ -78,9 +80,12 @@ main img{
 }
 
 </style>
-<%=render partial: "welcome/mostrecentarticle", as: :post,collection: Post.mostrecent%>
+
+<%=render partial: "welcome/mostrecentarticle", as: :post,collection: @news%>
 </main>
+
 </header>
+<%end%>
 
     <!-- Details 1 -->
     <!-- sorties -->
@@ -97,38 +102,12 @@ main img{
                 <div class="col-lg-12">   
                                   
                     <div class="row">
+<%=render collection: @entreetop, as: :clip, partial: "entreetop"%>
 									
-                        <div class="element-item  col-lg-3">
-                            <a href="videos.php?vid=kto-la-caisse-feat-flash" title="Kto - la caisse (feat. flash)">
-                                <img src="../../media/clip/2023/06/kto-la-caisse-feat-flash-2023.jpg" alt="Kto - la caisse (feat. flash)" />
-								  <div class="artist" >Kto  </div> <div class="title"> la caisse (feat. flash)</div>
-                            </a>
-                        </div>
-									
-                        <div class="element-item  col-lg-3">
-                            <a href="videos.php?vid=omerta-street-life" title="Omerta - street life">
-                                <img src="../../media/clip/2023/06/omerta-street-life-clip-officiel-2023.jpg" alt="Omerta - street life" />
-								  <div class="artist" >Omerta  </div> <div class="title"> street life</div>
-                            </a>
-                        </div>
-									
-                        <div class="element-item  col-lg-3">
-                            <a href="videos.php?vid=tiitof-sheriff" title="Tiitof - sheriff">
-                                <img src="../../media/clip/2023/06/tiitof-sheriff-clip-officiel-2023.jpg" alt="Tiitof - sheriff" />
-								  <div class="artist" >Tiitof  </div> <div class="title"> sheriff</div>
-                            </a>
-                        </div>
-									
-                        <div class="element-item  col-lg-3">
-                            <a href="videos.php?vid=panik-j-x-select-slk-mama-desole" title="Panik j x select slk - mama désolé">
-                                <img src="../../media/clip/2023/06/panik-j-x-select-slk-mama-desole-clip-officiel-2023-2023.jpg" alt="Panik j x select slk - mama désolé" />
-								  <div class="artist" >Panik j x select slk  </div> <div class="title"> mama désolé</div>
-                            </a>
-                        </div>
 					                    <!-- end of filter -->
 					</div>
 					<div class="d-flex justify-content-center">
-                     <a href="top.php" class="btn-solid-reg" style="	margin-right:0%; z-index:3">voir tous</a>
+                     <a href="/top.php" class="btn-solid-reg" style="	margin-right:0%; z-index:3">voir tous</a>
 				    </div>
             </div> <!-- end of row -->
 		</div> <!-- end of container -->
@@ -146,21 +125,8 @@ main img{
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-xs-12">
-                    <div class="image-container" style="z-index:1" >
-										     <div>
-					         
-							<img class="img-fluid img-1 "  src="../../media/clip/2023/03/maurane-voyer-feat-meryl-sakitefo-2023.jpg" alt="Maurane voyer feat Meryl - Sakitefo" />
-								<a href="videos.php?vid=maurane-voyer-feat-meryl-sakitefo" title="Maurane voyer feat Meryl - Sakitefo">
-									<i class="fa fa-play fa-play-1" aria-hidden="true"></i>
-								</a>
-						 </div>
-					   					     <div>
-					         
-							<img class="img-fluid img-2 "  src="../../media/clip/2022/07/kalash-feat-maureen-laptop-clip-officiel-2022.jpg" alt="Kalash feat Maureen - Laptop" />
-								<a href="videos.php?vid=kalash-feat-maureen-laptop" title="Kalash feat Maureen - Laptop">
-									<i class="fa fa-play fa-play-2" aria-hidden="true"></i>
-								</a>
-						 </div>
+                    <div class="image-container" style="z-index:1;position:relative;" >
+<%=render collection: @top, as: :clip, partial: "top"%>
 					   						
                     </div> <!-- end of image-container -->
                 </div> <!-- end of col -->
@@ -208,107 +174,9 @@ main img{
 			
 			
 					
-			  <div class="carousel-item active" id="1">
-                    <div class="col-md-2">
-                        <div class="card">
-				           <a href="actualites/mikl-a-la-cigale-notre-reportage" title="Mikl à la Cigale notre reportage">
-                            <div class="card-img position-relative">
-                                <img src="../../media/actus/2022/11/mikl-a-la-cigale-notre-reportage-thlg.jpg"
-                                             alt="Mikl à la Cigale notre reportage" class="img-fluid">
-							<!--	<div class="badge">
-									<button class="btn-solid-yellow">Artiste</button> 
-								</div> -->
-                            </div>
-						   </a>
-                        </div>
-                    </div>
-                </div>
 			
 			  	
-			  <div class="carousel-item " id="2">
-                    <div class="col-md-2">
-                        <div class="card">
-				           <a href="actualites/goulam-du-zouk-venu-des-comores" title="Goulam du zouk venu des Comores">
-                            <div class="card-img position-relative">
-                                <img src="../../media/actus/2022/11/goulam-du-zouk-venu-des-comores-thlg.jpg"
-                                             alt="Goulam du zouk venu des Comores" class="img-fluid">
-							<!--	<div class="badge">
-									<button class="btn-solid-yellow">Artiste</button> 
-								</div> -->
-                            </div>
-						   </a>
-                        </div>
-                    </div>
-                </div>
-			
-			  	
-			  <div class="carousel-item " id="3">
-                    <div class="col-md-2">
-                        <div class="card">
-				           <a href="actualites/jahyanai-annonce-la-sortie-de-son-premier-album" title="Jahyanaï annonce la sortie de son premier album">
-                            <div class="card-img position-relative">
-                                <img src="../../media/actus/2022/10/jahyanai-annonce-la-sortie-de-son-album-thlg.png"
-                                             alt="Jahyanaï annonce la sortie de son premier album" class="img-fluid">
-							<!--	<div class="badge">
-									<button class="btn-solid-yellow">Artiste</button> 
-								</div> -->
-                            </div>
-						   </a>
-                        </div>
-                    </div>
-                </div>
-			
-			  	
-			  <div class="carousel-item " id="4">
-                    <div class="col-md-2">
-                        <div class="card">
-				           <a href="actualites/kenyon-un-remix-konpa-de-son-single-marianna" title="Kenyon, un remix konpa de son single Marianna">
-                            <div class="card-img position-relative">
-                                <img src="../../media/actus/2022/10/kenyon-marianna-thlg.jpg"
-                                             alt="Kenyon, un remix konpa de son single Marianna" class="img-fluid">
-							<!--	<div class="badge">
-									<button class="btn-solid-yellow">Artiste</button> 
-								</div> -->
-                            </div>
-						   </a>
-                        </div>
-                    </div>
-                </div>
-			
-			  	
-			  <div class="carousel-item " id="5">
-                    <div class="col-md-2">
-                        <div class="card">
-				           <a href="actualites/hit-lokal-partenaire-de-la-tournee-de-kalash" title="Hit Lokal partenaire de la tournée de Kalash">
-                            <div class="card-img position-relative">
-                                <img src="../../media/actus/2022/10/hit-lokal-partenaire-de-la-tournee-de-kalash-thlg.png"
-                                             alt="Hit Lokal partenaire de la tournée de Kalash" class="img-fluid">
-							<!--	<div class="badge">
-									<button class="btn-solid-yellow">Artiste</button> 
-								</div> -->
-                            </div>
-						   </a>
-                        </div>
-                    </div>
-                </div>
-			
-			  	
-			  <div class="carousel-item " id="6">
-                    <div class="col-md-2">
-                        <div class="card">
-				           <a href="actualites/kalash-la-tournee-commence-" title="Kalash La tournée commence !">
-                            <div class="card-img position-relative">
-                                <img src="../../media/actus/2022/10/kalash-la-tournee-commence--thlg.png"
-                                             alt="Kalash La tournée commence !" class="img-fluid">
-							<!--	<div class="badge">
-									<button class="btn-solid-yellow">Artiste</button> 
-								</div> -->
-                            </div>
-						   </a>
-                        </div>
-                    </div>
-                </div>
-			
+		<%=render collection: @mynews, as: :news, partial: "mynews"%>	
 			  
             </div>
             <a class="carousel-control-prev w-aut" href="#recipeCarousel" role="button" data-bs-slide="prev">

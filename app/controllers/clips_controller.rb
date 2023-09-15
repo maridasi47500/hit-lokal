@@ -7,6 +7,10 @@ class ClipsController < ApplicationController
   end
 
   # GET /clips/1 or /clips/1.json
+  def showclip
+    @clip = Clip.find_with_vid(params[:vid])
+    render :show
+  end
   def show
   end
 

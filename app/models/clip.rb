@@ -1,7 +1,11 @@
+require 'video_thumb' # if you're not use Rails 4
 class Clip < ApplicationRecord
   belongs_to :cat
   has_and_belongs_to_many :artists, :join_table => :clipsartists
   after_validation :myfavclip
+  def self.find_with_vid(vid)
+    where("parameterize(title) like ?",vid.parameterize)[0]
+  end
   def mytitle
     self.title.split("-")[1].strip.squish
   end
@@ -11,6 +15,7 @@ class Clip < ApplicationRecord
     end
     
   end
+    
   has_many :views
   def nbsemtop
     View.mysqlmyid(id)["nbsem_top"]
@@ -51,5 +56,17 @@ class Clip < ApplicationRecord
     self.title= videos.where(id: self.link+',invalid').map(&:title)[0]
     self.description= videos.where(id: self.link+',invalid').map(&:description)[0]
     self.sortie= videos.where(id: self.link+',invalid').map(&:published_at)[0].to_date
+    thumb=VideoThumb::get("http://www.youtube.com/watch?v=#{self.link}", "medium")
+    self.image=thumb
+    #system("(cd '#{Rails.root.to_s}/public/uploads' && wget '#{thumb}')")
+  end
+  def self.entree_dans_le_top
+    self.joins(:views).order(created_at: :desc).select("clips.*, count(views.id) as countview").group("clips.id").having("count(views.id) > 0").limit(4)
+  end
+  def self.le_top
+    self.joins(:views).select("clips.*, (select count(views.id) as countview from views group by views.clip_id, strftime('%W',views.created_at) having views.clip_id = clips.id order by countview desc,strftime('%W',views.created_at) desc limit 1) as countviews").group("clips.id").limit(3)
+  end
+  def myartist
+    self.title.split("-")[0].strip.squish
   end
 end

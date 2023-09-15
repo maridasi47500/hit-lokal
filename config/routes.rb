@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'artists/show'
+  get "/artiste.php", to: "artists#show"
+  get "/videos.php", to: "clips#showclip"
+  scope(:path_names => { :new => "nouveau", :edit => "editer" }) do
+  resources :news, :path => "actualites"
+end
     get "recover.php", to: "ajouter#user"
   devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations' }
   resources :news
