@@ -1,4 +1,3 @@
-require 'video_thumb' # if you're not use Rails 4
 class Clip < ApplicationRecord
   belongs_to :cat
   has_and_belongs_to_many :artists, :join_table => :clipsartists
