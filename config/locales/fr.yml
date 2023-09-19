@@ -1,9 +1,10 @@
 fr:
   monclip:
     vue:
-      zero: No views
-      one: "1 view"
-      other: "%{count} views"
+      zero: "no view"
+      one: "1 vue"
+      many: "%{count} vues"
+      other: "%{count} vues"
   activerecord:
     errors:
       messages:
@@ -48,6 +49,8 @@ fr:
       default: "%d/%m/%Y"
       long: "%-d %B %Y"
       short: "%-d %b"
+      debutsem: "%-d/%m"
+      finsem: "%-d/%m/%Y"
     month_names:
     -
     - janvier
@@ -223,4 +226,3 @@ fr:
       long: "%A %d %B %Y %Hh%M"
       short: "%d %b %Hh%M"
     pm: pm
-

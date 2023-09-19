@@ -11,7 +11,7 @@
 					                     <h2 style="width: 50%; text-align: leftt;"class="h2-heading-details"  style="z-index:2">
                       <%@clip.artists.each do |artist|%><a href="/artiste.php?ar=<%=artist.id%>" title="<%=@clip.title%>">
                           <%=artist.name%>                          </a><%end%> <%=@clip.mytitle%></h2>
-                     <h3 style="width: 40%; text-align: right; color:gold"><i class="fa fa-eye" aria-hidden="true"></i><%=t("monclip.vue",count: @clip.views.count)%></h3>
+                     <h3 style="width: 40%; text-align: right; color:gold"><i class="fa fa-eye" aria-hidden="true"></i><%=t("monclip.vue",count: @clip.views.length)%></h3>
 					<br />
 					 <br />
 					</div>

@@ -7,6 +7,7 @@ ruby "3.2.2"
 gem "rails", "~> 7.0.6"
 gem 'yt', '~> 0.32.0'
 gem 'video_thumb'
+gem "kaminari"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"

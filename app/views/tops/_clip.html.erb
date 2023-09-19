@@ -1,0 +1,45 @@
+<li class="list-group-item d-flex justify-content-between align-items-start">
+					<div class="ms-2">
+						<a  href="videos.php?vid=<%=clip["title"].parameterize%>">
+							<img class="img-fluid" src="<%=clip["image"]%>" alt="<%=clip["image"]%>" />
+						</a>
+					</div>
+					<div class="ms-auto me-auto w100">
+					     <a  href="videos.php?vid=<%=clip["title"].parameterize%>">
+							<div class="artist" ><%=clip["title"].split("-")[0]%> </div> <div class="title"><%=clip["title"].split("-")[1]%></div>
+						 </a>
+					</div>
+					
+					<div class="ms-2">
+			
+				<div class="dropdown">
+
+					    <a class="" type="button" id="stat9434" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-chevron-circle-up fa-3x text-up"></i></a>                <div class="dropdown-menu" aria-labelledby="stat9434" style="min-width: 20rem;" >
+                  <table class="table table-condensed">
+
+                    <caption>Statistiques</caption>
+
+                    <tr>
+                      <td><i class="fa fa-trophy fa-1x"></i> Meilleure position</td>
+                      <td><span class="label label-default" title="Meilleur position dans le top"><%=clip["meilleurepos"]%></span>&nbsp;</td>
+
+                    </tr>
+                    <tr>
+                      <td><i class="fa fa-arrow-up fa-1x"></i> Position la semaine dernière</td>
+                      <td>
+                        <span class="label label-default" title="Position la semaine dernière"><%=clip["positionsemderniere"]%></span>&nbsp;                      </td>
+
+                    </tr>
+                    <tr>
+                      <td><i class="fa fa-clock fa-1x"></i> Nbr semaine dans le top</td>
+                      <td><span class="label label-default" title="Nombre de semaines dans le top"><%=clip["nbsemtop"]%></i></span></td>
+
+                    </tr>
+
+                  </table>
+                </div>
+                </div>
+					    
+					</div>
+
+				  </li>

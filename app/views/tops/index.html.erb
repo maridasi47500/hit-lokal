@@ -1,0 +1,143 @@
+  <!-- top -->
+	<div id="top-1" class="basic-2 top-1 bg-gray position-relative" style="z-index:2">
+
+	<div class="vecteur-8" ></div>
+		<div class="container">
+			
+            <div class="row">
+                <div class="col-lg-12">
+				    <div style="display: flex">
+                    <h2 class="h2-heading">Le Top </h2><span class="line-2" ></span>
+					</div>
+                </div> <!-- end of col -->
+                				<div class="col-lg-6" style="margin: auto; font-family: Gilmer;font-style: normal;font-weight: bold; font-size: 26px;line-height: 26px; color: #1F3356;">
+					 Semaine <br />
+					 du <%=l(@debutsem, format: :debutsem)%> au <%=l(@finsem, format: :finsem)%>				 </div>
+				 
+				            </div> <!-- end of row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <form class="row">					    
+						<div class="col-lg-4 offset-lg-1">
+							<div class="form-group">
+								<select id="categories" onchange="window.location='/'+String(this.value)"  name="categories" class="form-select" aria-label="Default select example">								
+										<option selected>Par type</option>
+<%Cat.all.each do |h|%>
+																					<option value="top.php?cat=<%=h.id%>"><%=h.name%></option>
+<%end%>
+										  								</select>
+							</div>
+						</div>
+						<div class="col-lg-4 offset-lg-1">
+							<div class="form-group">
+								<select class="form-select" onchange="window.location='/'+String(this.value)" id="regions" name="regions" aria-label="Default select example">
+									<option selected>Par région</option>								  								  
+												  			  					     
+
+                            <option value="top.php?region=7" class="btn-lg-52"> &nbsp;Afrique &nbsp;</a>
+            
+					   					     
+
+                            <option value="top.php?region=8" class="btn-lg-52"> &nbsp;Autres &nbsp;</a>
+            
+					   					     
+
+                            <option value="top.php?region=2" class="btn-lg-52"> &nbsp;Guadeloupe &nbsp;</a>
+            
+					   					     
+
+                            <option value="top.php?region=4" class="btn-lg-52"> &nbsp;Guyane &nbsp;</a>
+            
+					   					     
+
+                            <option value="top.php?region=5" class="btn-lg-52"> &nbsp;Haïti &nbsp;</a>
+            
+					   					     
+
+                            <option value="top.php?region=1" class="btn-lg-52"> &nbsp;Martinique &nbsp;</a>
+            
+					   					     
+
+                            <option value="top.php?region=3" class="btn-lg-52"> &nbsp;Réunion &nbsp;</a>
+            
+					   					     
+
+                            <option value="top.php?region=6" class="btn-lg-52"> &nbsp;USA &nbsp;</a>
+            
+					   			  
+								</select>
+							</div>
+						</div>
+                    </form>
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+		</div> <!-- end of container -->
+    </div> <!-- end of filter -->
+    <!-- end of sorties -->
+
+<!-- --- -->	
+<!-- --- -->	
+<!-- Top -->
+<!-- --- -->
+<!-- --- -->
+
+    <div id="top-2" class="top-2 position-relative"  style="z-index:2">
+        <div class="container">
+            <div class="row">
+			 <div class="col-lg-7 top-list-1 col-xs-12">
+			<ol class="list-column" style="counter-reset: custom 0;">
+							  <%=render collection: @clips, as: :clip, partial: "tops/clip"%>
+             	
+				  
+
+
+				 
+				  
+				</ol>
+				
+
+
+		<div class="container">
+	           <br />
+	            <div class="row">
+                <div class="col-lg-12" style="z-index:2">                    
+                    <div class="grid">
+<%=paginate @clips, theme: 'my_custom_theme' %>
+                    </div> <!-- end of grid -->
+                    <!-- end of filter -->
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+	         <br />
+	</div>
+
+
+
+
+			  </div>
+                <div class="col-lg-4 col-xs-12 top-510">
+				    
+                    <div class="image-container" style="position:relative; z-index:1" >
+					 <a  href="videos.php?vid=kima-toxic">
+                        <img class="img-fluid top-511" src="../../media/clip/2023/06/kima-toxic-clip-officiel-2023.jpg" alt="Kima - Toxic" />
+                     </a>
+					</div>
+					 <div class="row top-512">
+					 <div class="col-lg-4 col-xs-12">
+					  <a  href="videos.php?vid=kima-toxic">
+					     <div class="artist" >Kima</div> <div class="title">  Toxic</div>
+					  </a>
+					</div>
+					<div class="col-lg-4 col-xs-12">
+					 <a href="videos.php?vid=kima-toxic" class="btn-solid-lg" style="padding: 0.625rem 0.625rem 0.625rem 0.625rem !important;line-height: 1!important;">regarder </a>
+					</div>
+					</div>
+					
+								</div>
+				
+				
+
+			</div>
+		</div>
+			<div class="vecteur-9" ></div>
+	</div>
+

@@ -9,9 +9,11 @@ class ClipsController < ApplicationController
   # GET /clips/1 or /clips/1.json
   def showclip
     @clip = Clip.find_with_vid(params[:vid])
+
     render :show
   end
   def show
+    View.create(clip_id: @clip.id)
   end
 
   # GET /clips/new
