@@ -262,7 +262,7 @@
                     <li class="nav-item dropdown" id="myDropdown">
                        <a class="nav-link dropdown-toggle" href="/artistes.php" data-bs-toggle="dropdown"> <%=current_user.username%>  </a>
                           <ul class="dropdown-menu">
-                            <li><%=link_to "ajouter un article",nouveau_actualites_path%></li>
+                            <li><%=link_to "ajouter un article",new_news_path,{class:"dropdown-item"} %></li>
                             <li><%=button_to('se déconnecter', destroy_user_session_path, method: :delete, class:'dropdown-item')%> </li>
                         </ul>
                     </li>
@@ -679,6 +679,9 @@ $('#recipeCarousel').bind('slide.bs.carousel', function() {
      $('#textCarousel').carousel(currentIndex);
  
   })
+$("a.dropdown").click(function(e){
+  $(this).children("dropdown-menu").show()
+})
   
  // .on('slide.bs.carousel', function (event) {
 </script>

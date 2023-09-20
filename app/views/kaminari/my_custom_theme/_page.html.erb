@@ -8,5 +8,5 @@
     remote:        data-remote
 -%>
 <div class="element-item col-lg-1 btn-lg-52-b">
-  <%= link_to_unless page.current?, ("#{page * 10 - 9}..#{page * 10}"), "/top.php?page=#{page}", {remote: remote, rel: page.rel} %>
+  <%= link_to ("#{page.to_i * 10 - 9}..#{page.to_i * 10}"), "/top.php?page=#{page.to_i}", {remote: remote, rel: page.rel} %>
 </div>

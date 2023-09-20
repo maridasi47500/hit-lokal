@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :comments
   get "top.php", to:'tops#index'
   get 'artists/show'
   get "/artiste.php", to: "artists#show"

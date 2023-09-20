@@ -70,6 +70,7 @@ fr:
     - :month
     - :year
   datetime:
+
     distance_in_words:
       about_x_hours:
         one: environ une heure
@@ -222,6 +223,7 @@ fr:
   time:
     am: am
     formats:
+      publie: "%H:%M le %d %b"
       default: "%d %B %Y %Hh %Mmin %Ss"
       long: "%A %d %B %Y %Hh%M"
       short: "%d %b %Hh%M"

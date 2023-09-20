@@ -1,5 +1,7 @@
 class NewsController < ApplicationController
-  before_action :set_news, only: %i[ show edit update destroy ]
+  before_action :set_news, only: %i[ edit update destroy ]
+  before_action :set_my_news, only: %i[ show ]
+before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
 
   # GET /news or /news.json
   def index
@@ -8,11 +10,14 @@ class NewsController < ApplicationController
 
   # GET /news/1 or /news/1.json
   def show
+Viewnews.create(news_id: @news.id)
+@lastnew=@news.lastnew
+@othernew=@news.othernew(@lastnew)
   end
 
   # GET /news/new
   def new
-    @news = News.new
+    @news = News.new(user_id: current_user.try(:id))
   end
 
   # GET /news/1/edit
@@ -25,7 +30,7 @@ class NewsController < ApplicationController
 
     respond_to do |format|
       if @news.save
-        format.html { redirect_to news_url(@news), notice: "News was successfully created." }
+        format.html { redirect_to news_url(@news.title.parameterize), notice: "News was successfully created." }
         format.json { render :show, status: :created, location: @news }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +43,7 @@ class NewsController < ApplicationController
   def update
     respond_to do |format|
       if @news.update(news_params)
-        format.html { redirect_to news_url(@news), notice: "News was successfully updated." }
+        format.html { redirect_to news_url(@news.title.parameterize), notice: "News was successfully updated." }
         format.json { render :show, status: :ok, location: @news }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -61,6 +66,9 @@ class NewsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_news
       @news = News.find(params[:id])
+    end
+    def set_my_news
+      @news = News.findnews(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

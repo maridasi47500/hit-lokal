@@ -1,0 +1,2 @@
+class Viewnews < ApplicationRecord
+end

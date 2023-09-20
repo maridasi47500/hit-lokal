@@ -1,0 +1,12 @@
+<div class="element-item col-lg-3">
+                        <a href="/actualites/<%=news.title.parameterize%>" title="<%=news.title%>">
+                            <img style="width: 300px;   height: 200px;  background: #C4C4C4;" src="/uploads/<%=news.image%>" alt="<%=news.title%>">
+                            <div class="">
+                            <!--        <button class="btn-solid-green">Artiste</button>  -->
+                                <span class="actu-date" >Publié à <%=l(news.created_at, format: :publie)%></span>
+                            </div>
+
+                            <div class="actu-content"><%=news.title%></div>
+                        </a>
+                    </div>
+

@@ -15,7 +15,8 @@ class Clip < ApplicationRecord
     
   end
     
-  has_many :views
+  has_many :views, dependent: :destroy
+
   def nbsemtop
     View.mysqlmyid(id)["nbsem_top"]
   rescue
@@ -32,7 +33,7 @@ class Clip < ApplicationRecord
     "New"
   end
   def title=(x)
-    write_attribute(:title, x.gsub("(clip officiel)","").gsub("(Clip officiel)","").strip.squish)
+    write_attribute(:title, x.gsub("Official Video","").gsub("(Official Music Video)","").gsub("(clip officiel)","").gsub("(Clip officiel)","").strip.squish)
   end
   def title
     read_attribute(:title)
