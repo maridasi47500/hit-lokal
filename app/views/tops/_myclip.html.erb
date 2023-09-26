@@ -1,0 +1,14 @@
+<li data-type="<%=clip.cat.name%>" class="is-visible col-md-3 col-sm-3" >
+                                            <div>
+                                                <a href="<%=linktovideo_path(title: clip.title.parameterize)%>" title="<%=clip.title%>">
+                                                    <div style="background:#f1f1f1;">
+                                                        <div class="portfolio-item">
+                                                            <img src="<%=clip.image%>" alt="<%=clip.title%>">
+                                                        </div>
+                                                        <div style="padding:.5em;height:4em;margin-bottom:1em;">
+                                                            <h4 style="margin:0;font-size:1em;line-height:1.1em;"><small><%=clip.title%> (<%=clip.sortie.year%>) - <%=clip.cat.name%></small></h4>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </li>

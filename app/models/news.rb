@@ -6,11 +6,14 @@ has_many :comments
           content
         end
 
+def self.mostrecent
+self.order(created_at: :desc).limit(1)[0]
+end
 def lastnew
-News.where.not(id: self.id).order(created_at: :desc).limit(4)
+News.all.where.not(id: self.id).order(created_at: :desc).limit(4)
 end
 def othernew(lastnew)
-News.joins(:views).select("news.*, count(viewnews.id) as countview").group("news.id").having.not(id: self.id).having.not(id: lastnew.ids).order("countview" => "desc").limit(4)
+News.all.joins(:views).select("news.*, count(viewnews.id) as countview").group("news.id").having(["news.id <> ?", self.id]).order("countview" => "desc").offset(4).limit(4)
 end
   def self.findnews(vid)
     where("parameterize(title) like ?",vid.parameterize)[0]

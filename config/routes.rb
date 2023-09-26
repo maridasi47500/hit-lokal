@@ -3,7 +3,12 @@ Rails.application.routes.draw do
   get "top.php", to:'tops#index'
   get 'artists/show'
   get "/artiste.php", to: "artists#show"
+  get "/artistes.php", to: "artists#index"
+  get "fetch-artistes-style.php", to: "artists#artiststyle"
+  get "fetch-artistes-letters.php", to: "artists#artistletters"
+  get "/top/nouveautes", to: "tops#nouveautes"
   get "/videos.php", to: "clips#showclip"
+  get "/top/videos/:title.html", to: "clips#showclip", as: :linktovideo
   scope(:path_names => { :new => "nouveau", :edit => "editer" }) do
   resources :news, :path => "actualites"
 end

@@ -92,14 +92,18 @@ iframe {
 					<!-- Twitter -->
 					</div>
                     </div>
+
                     <div class="text-3 text-4">
 					    Commentaires (<%=@news.comments.length%>)
 					</div>
+					    <%=render @news.comments%>)
+
 										<form id="mymsg" action="/comments" method="post">
                         <div class="form-group">
-                            <%if !user_signed_in?%>Vous devez être connecté(e) pour laisser un commentaire.<%end%>                            <textarea class="form-control-textarea" placeholder="Message" required <%if !user_signed_in?%>disabled<%end%> ></textarea>
+                            <%if !user_signed_in?%>Vous devez être connecté(e) pour laisser un commentaire.<%end%>                            <textarea name="comment[content]" class="form-control-textarea" placeholder="Message" required <%if !user_signed_in?%>disabled<%end%> ></textarea>
 <%if user_signed_in?%>
-<input type="hidden" value="<%=current_user.id%>"/>
+<input type="hidden" name="comment[user_id]" value="<%=current_user.id%>"/>
+<input type="hidden" name="comment[news_id]" value="<%=@news.id%>"/>
 <button type="submit">envoyer</button>
 <%end%>
 

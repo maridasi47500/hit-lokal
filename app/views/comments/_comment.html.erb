@@ -1,17 +1,3 @@
-<div id="<%= dom_id comment %>">
-  <p>
-    <strong>User:</strong>
-    <%= comment.user_id %>
-  </p>
-
-  <p>
-    <strong>Content:</strong>
-    <%= comment.content %>
-  </p>
-
-  <p>
-    <strong>News:</strong>
-    <%= comment.news_id %>
-  </p>
-
-</div>
+<div class="text-comment">
+                                            <%=simple_format(comment.content)%> (<%=comment.user.username%>, <%=l(comment.created_at.to_date)%>)
+                                        </div>

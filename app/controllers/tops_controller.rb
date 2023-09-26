@@ -1,4 +1,7 @@
 class TopsController < ApplicationController
+  def nouveautes
+    @clips = Clip.nouveautes
+  end
   def index
     @debutsem = Date.today.wday > 0 ? Date.today.last_week.sunday : Date.today
     @finsem = (Date.today.wday > 0 ? Date.today.monday : Date.today.next_week)+5.days

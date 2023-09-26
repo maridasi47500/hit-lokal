@@ -5,7 +5,11 @@ before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
 
   # GET /news or /news.json
   def index
-    @news = News.all
+    @news = News.all.mostrecent
+    render :show
+    Viewnews.create(news_id: @news.id)
+    @lastnew=@news.lastnew
+    @othernew=@news.othernew(@lastnew)
   end
 
   # GET /news/1 or /news/1.json

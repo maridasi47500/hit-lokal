@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: %i[ show edit update destroy ]
+  protect_from_forgery except:[:create]
 
   # GET /comments or /comments.json
   def index

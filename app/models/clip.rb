@@ -2,6 +2,9 @@ class Clip < ApplicationRecord
   belongs_to :cat
   has_and_belongs_to_many :artists, :join_table => :clipsartists
   after_validation :myfavclip
+  def self.nouveautes
+    where("created_at > ?", (DateTime.now - 4.month).beginning_of_month).order(sortie: :desc)
+  end
   def self.find_with_vid(vid)
     where("parameterize(title) like ?",vid.parameterize)[0]
   end
