@@ -52,42 +52,13 @@
 	            <div class="row">
                 <div class="col-lg-9   offset-lg-1" style="z-index:2">                    
                     <div class="grid">
+<%@allcats.each_with_index do |h,i|%>
 										     
-					    <div class="element-item lg">
-                             <a href="artistes.php?cat=10" class="btn-lg-52"> &nbsp;Compas &nbsp;</a>
+					    <div class="element-item lg" style="left:0px;top:<%=i*55%>px;">
+                             <a href="artistes.php?cat=<%=h.id%>" class="btn-lg-52"> &nbsp;<%=h.name%> &nbsp;</a>
                         </div>
+<%end%>
 					   					     
-					    <div class="element-item lg">
-                             <a href="artistes.php?cat=5" class="btn-lg-52"> &nbsp;Dancehall &nbsp;</a>
-                        </div>
-					   					     
-					    <div class="element-item lg">
-                             <a href="artistes.php?cat=11" class="btn-lg-52"> &nbsp;Pop &nbsp;</a>
-                        </div>
-					   					     
-					    <div class="element-item lg">
-                             <a href="artistes.php?cat=3" class="btn-lg-52"> &nbsp;Rap, Hip-Hop et RnB &nbsp;</a>
-                        </div>
-					   					     
-					    <div class="element-item lg">
-                             <a href="artistes.php?cat=4" class="btn-lg-52"> &nbsp;Reggae &nbsp;</a>
-                        </div>
-					   					     
-					    <div class="element-item lg">
-                             <a href="artistes.php?cat=8" class="btn-lg-52"> &nbsp;Soca et Bouyon &nbsp;</a>
-                        </div>
-					   					     
-					    <div class="element-item lg">
-                             <a href="artistes.php?cat=6" class="btn-lg-52"> &nbsp;Soul &nbsp;</a>
-                        </div>
-					   					     
-					    <div class="element-item lg">
-                             <a href="artistes.php?cat=9" class="btn-lg-52"> &nbsp;Traditionnel &nbsp;</a>
-                        </div>
-					   					     
-					    <div class="element-item lg">
-                             <a href="artistes.php?cat=1" class="btn-lg-52"> &nbsp;Zouk &nbsp;</a>
-                        </div>
 					   
                     </div> <!-- end of grid -->
 
@@ -143,7 +114,7 @@
                     <div class="row" id="art_preview">
 					
 					
-			<%=render collection: @artist, partial: "artists/myartist", as: :artist%>		
+			<%=render collection: @artists, partial: "artists/myartist", as: :artist%>		
 					
 				                   </div> <!-- end of col -->
             </div> <!-- end of row -->
@@ -234,6 +205,7 @@ var categ = url.searchParams.get("cat");
 
 
 
+<%=content_for :myjs do%>
   <script>
 $(document).ready(function(){
  let rp ='';
@@ -299,3 +271,4 @@ $(document).ready(function(){
     }
 	});
 </script>
+<%end%>

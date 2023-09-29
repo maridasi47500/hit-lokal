@@ -1,0 +1,94 @@
+<!-- --- --- --- --- -- -->	
+<!-- --- --- --- --- -- -->	
+<!-- TOP ARTISTES  -->
+<!-- --- --- --- --- -- -->	
+<!-- --- --- --- --- -- -->	
+<style>
+.col-lg-3 {
+    flex: 0 0 auto;
+	 width: 30%;
+}
+
+
+@media (max-width: 992px) {
+	.col-lg-3 {
+    flex: 0 0 auto;
+    width: auto;
+}
+}
+
+.compo-item {
+    margin-bottom: 2rem;
+    position: relative;
+    padding: 10px;
+    top: 10px;
+    margin: auto;
+    text-align: left;
+	background-color: #FFFFFF;
+    margin-bottom: 15px;
+	border-radius: 8px;
+}
+.compo-content{
+margin-left: 30px;
+}
+
+.label-primary{
+    background: #FFFFFF;
+    border: 2px solid #EDEDED;
+    border-radius: 49px;
+    font-family: Gilmer;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 45px;
+    text-align: center;
+    display: inline-block;
+    color: #1F3356;
+    width: 40px;
+    height: 45px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.label-primary:hover {
+	background: #FFCB00;
+}
+</style>
+	<div id="compo" class="compo bg-gray position-relative">
+		<div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+				    <div style="display: flex">
+                    <h2 class="h2-heading"  style="z-index:2"> Compositeurs </h2><span class="line-2" ></span>
+					</div>
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+            
+                        <div class="col-md-12 col-sm-12">
+            
+            <hr>
+            <a href="compositeurs.php?l=A"><span class="label label-primary">A</span></a>&nbsp;<a href="compositeurs.php?l=B"><span class="label label-primary">B</span></a>&nbsp;<a href="compositeurs.php?l=C"><span class="label label-primary">C</span></a>&nbsp;<a href="compositeurs.php?l=D"><span class="label label-primary">D</span></a>&nbsp;<a href="compositeurs.php?l=E"><span class="label label-primary">E</span></a>&nbsp;<a href="compositeurs.php?l=F"><span class="label label-primary">F</span></a>&nbsp;<a href="compositeurs.php?l=G"><span class="label label-primary">G</span></a>&nbsp;<a href="compositeurs.php?l=H"><span class="label label-primary">H</span></a>&nbsp;<a href="compositeurs.php?l=I"><span class="label label-primary">I</span></a>&nbsp;<a href="compositeurs.php?l=J"><span class="label label-primary">J</span></a>&nbsp;<a href="compositeurs.php?l=K"><span class="label label-primary">K</span></a>&nbsp;<a href="compositeurs.php?l=L"><span class="label label-primary">L</span></a>&nbsp;<a href="compositeurs.php?l=M"><span class="label label-primary">M</span></a>&nbsp;<a href="compositeurs.php?l=N"><span class="label label-primary">N</span></a>&nbsp;<a href="compositeurs.php?l=O"><span class="label label-primary">O</span></a>&nbsp;<a href="compositeurs.php?l=P"><span class="label label-primary">P</span></a>&nbsp;<a href="compositeurs.php?l=Q"><span class="label label-primary">Q</span></a>&nbsp;<a href="compositeurs.php?l=R"><span class="label label-primary">R</span></a>&nbsp;<a href="compositeurs.php?l=S"><span class="label label-primary">S</span></a>&nbsp;<a href="compositeurs.php?l=T"><span class="label label-primary">T</span></a>&nbsp;<a href="compositeurs.php?l=U"><span class="label label-primary">U</span></a>&nbsp;<a href="compositeurs.php?l=V"><span class="label label-primary">V</span></a>&nbsp;<a href="compositeurs.php?l=W"><span class="label label-primary">W</span></a>&nbsp;<a href="compositeurs.php?l=X"><span class="label label-primary">X</span></a>&nbsp;<a href="compositeurs.php?l=Y"><span class="label label-primary">Y</span></a>&nbsp;<a href="compositeurs.php?l=Z"><span class="label label-primary">Z</span></a>
+
+            <hr>
+
+          </div>
+                <div class="col-lg-10  offset-lg-1">    
+                               
+                     <div class="row">
+					 					     
+					   <%=render collection: @artist, as: :compositeur,partial: "compositeur" %>  
+						<div class="compo-item col-lg-3">
+							<a class="info" href="compositeur.php?u=1000yah" title="1000yah">
+							   <h2 class="compo-content">1000yah</h2>
+						    </a>
+						</div>
+						 					     
+					    
+						                 </div> <!-- end of col -->
+					
+						
+            </div> <!-- end of row -->
+			
+			
+</div>
+  </div>

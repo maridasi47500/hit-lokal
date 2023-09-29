@@ -12,3 +12,4 @@ Cat.all.destroy_all
 @code.children[1].children[0].children.each do |cat|
 Cat.create(name:cat.inner_html.strip.squish)
 end
+Artist.left_joins(:clips).select("artists.*, count(clips.id) as mycount").group("artists.id").having("mycount = 0").destroy_all

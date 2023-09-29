@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
+  get "compositeurs.php", to: 'compositeurs#index'
+  get "realisateurs.php", to: 'realisateurs#index'
   resources :comments
   get "top.php", to:'tops#index'
   get 'artists/show'
   get "/artiste.php", to: "artists#show"
   get "/artistes.php", to: "artists#index"
-  get "fetch-artistes-style.php", to: "artists#artiststyle"
-  get "fetch-artistes-letters.php", to: "artists#artistletters"
+  post "fetch-artistes-style.php", to: "artists#artiststyle"
+  post "fetch-artistes-letters.php", to: "artists#artistletters"
   get "/top/nouveautes", to: "tops#nouveautes"
   get "/videos.php", to: "clips#showclip"
   get "/top/videos/:title.html", to: "clips#showclip", as: :linktovideo
