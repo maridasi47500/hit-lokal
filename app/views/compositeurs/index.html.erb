@@ -76,12 +76,13 @@ margin-left: 30px;
                                
                      <div class="row">
 					 					     
-					   <%=render collection: @artist, as: :compositeur,partial: "compositeur" %>  
-						<div class="compo-item col-lg-3">
-							<a class="info" href="compositeur.php?u=1000yah" title="1000yah">
-							   <h2 class="compo-content">1000yah</h2>
-						    </a>
-						</div>
+<%if @artists.length > 0%>
+					   <%=render collection: @artists, as: :compositeur,partial: "composer" %>  
+<%else%>
+<p>aucun compositeur <%if params[:l].to_s.length > 0%>
+qui commence par <%=params[:l]%>
+<%end%></p>
+<%end%>
 						 					     
 					    
 						                 </div> <!-- end of col -->

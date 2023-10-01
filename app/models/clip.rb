@@ -1,4 +1,5 @@
 class Clip < ApplicationRecord
+  belongs_to :user, optional: true
   belongs_to :cat
   has_and_belongs_to_many :artists, :join_table => :clipsartists
   after_validation :myfavclip

@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
+  get 'asso/index'
+  get "lassociation.php", to: 'asso#index'
   get "compositeurs.php", to: 'compositeurs#index'
+  get "compositeur.php", to: 'compositeurs#show'
   get "realisateurs.php", to: 'realisateurs#index'
+  get "realisateur.php", to: 'realisateurs#show'
   resources :comments
   get "top.php", to:'tops#index'
   get 'artists/show'

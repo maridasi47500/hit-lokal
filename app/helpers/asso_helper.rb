@@ -1,0 +1,2 @@
+module AssoHelper
+end

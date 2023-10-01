@@ -1,0 +1,61 @@
+
+<!-- --- --- --- --- -- -->	
+<!-- --- --- --- --- -- -->	
+<!-- TOP ARTISTES  -->
+<!-- --- --- --- --- -- -->	
+<!-- --- --- --- --- -- -->	
+<style>
+.col-lg-3 {
+    flex: 0 0 auto;
+    width: 30%;
+}
+
+
+@media (max-width: 992px) {
+	.col-lg-3 {
+    flex: 0 0 auto;
+    width: auto;
+}
+}
+html {
+  scroll-behavior: smooth;
+}
+</style>
+	<div id="compo" class="compo bg-gray position-relative">
+		<div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+				    <div style="display: flex">
+                    <h2 class="h2-heading"  style="z-index:2"><%=@artist.username%>  / Compositeur </h2><span class="line-2" ></span>
+					</div>
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+                <div class="col-lg-10  offset-lg-1">    
+                     <h3 class="h3-heading">Les dernières vidéos </h3>              
+                     <div class="row">
+<%=render collection: @myvids, as: :clip, partial: "myvid"%>
+					  					     
+					     
+						                 </div> <!-- end of col -->
+					
+						
+            </div> <!-- end of row -->
+			
+			
+			<!-- -->
+			
+						        <div class="col-lg-10  offset-lg-1">    
+                     <h3 class="h3-heading">Toutes les video </h3>              
+                    <div class="row"  id="art_preview">
+<%=render collection: @myothervids, as: :clip, partial: "myvid"%>
+					                  </div> <!-- end of col -->
+            </div> <!-- end of row -->
+            	            	
+            	
+
+		   
+		</div> <!-- end of container -->
+    </div> <!-- end of filter -->
+    <!-- end of top artistes -->	
+
+         
