@@ -1,0 +1,142 @@
+<%=content_for :css do%>
+    <style>
+  
+  .add-clip {
+        margin: 20px;
+          }
+    
+    .add-clip p {
+          text-align : left;
+            }
+      .add-clip ul li {
+            text-align : left;
+                font-size: 22px;
+                    margin-bottom: 15px;
+                      }
+        
+        .add-clip .form-group {
+                text-align: left;
+                    font-size: 22px;
+                      }
+          
+          .add-clip .text-muted {
+                color: #1F3356!important;
+                    font-size: 15px;
+                      }
+            
+            .add-clip h2 {
+                  color: #1F3356!important;
+                    }
+              
+            .POC:before {
+                  content: attr(data-placeholder);
+                      position: absolute;
+                          margin-top: 12px;
+                              color: #000;
+                                  width: 375px;
+            }
+
+            .POC__input-field {
+                padding-left: 375px;
+                  
+            }
+              </style>
+<%end%>
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+// make it as accordion for smaller screens
+if (window.innerWidth < 992) {
+
+  // close all inner dropdowns when parent is closed
+  document.querySelectorAll('.navbar .dropdown').forEach(function(everydropdown){
+    everydropdown.addEventListener('hidden.bs.dropdown', function () {
+      // after dropdown is hidden, then find all submenus
+        this.querySelectorAll('.submenu').forEach(function(everysubmenu){
+          // hide every submenu as well
+          everysubmenu.style.display = 'none';
+        });
+    })
+  });
+
+  document.querySelectorAll('.dropdown-menu a').forEach(function(element){
+    element.addEventListener('click', function (e) {
+        let nextEl = this.nextElementSibling;
+        if(nextEl && nextEl.classList.contains('submenu')) {
+          // prevent opening link if link needs to open dropdown
+          e.preventDefault();
+          if(nextEl.style.display == 'block'){
+            nextEl.style.display = 'none';
+          } else {
+            nextEl.style.display = 'block';
+          }
+
+        }
+    });
+  })
+}
+// end if innerWidth
+});
+</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-47717247-10', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+<!-- --- --- --- --- -- -->	
+<!-- --- --- --- --- -- -->	
+<!-- TOP DE LA SEMAINE  -->
+<!-- --- --- --- --- -- -->	
+<!-- --- --- --- --- -- -->	
+
+	
+	<div id="artistes-0" class="add-clip col-lg-10 offset-lg-1 position-relative">	
+	            <div class="row">
+                <div class="col-lg-6 offset-lg-2" style="z-index:2">                    
+                    <h2>Ajouter votre utilisateur comme compositeur/trice</h2>
+					<p>Hit Lokal vous permet de dire quels sont les compositeurs/trice.</p>
+                                <hr>
+            
+                        
+            
+                                
+                    <form action="/moncompositeur.php" method="post">
+<input type="hidden" name="user_id" value="<%=current_user.try(:id)%>" />
+<input type="hidden" name="artist_id" value="<%=@artist.try(:id)%>" />
+					
+						<div class="form-group">
+						
+						<div class="form-check form-switch d-inline-block me-1">
+							<input type="checkbox" class="form-check-input" id="site_state" style="cursor: pointer;" name="compose" required />        
+					Je certifie que cet utilisateur (<%=@artist.username%>)  est une personne de l'équipe de réalisation et en lien avec la composition de cette vidéo.</div>
+						</div>
+                        <div class="form-group">
+                          
+                            <input id="submit" name="submit" type="submit" value="Enregistrer" class="btn-solid-reg"/>
+                        </div>
+                    </form>
+                            </div> <!-- end of col -->
+				
+				 <div class="col-lg-3 offset-lg-1 compteur" style="z-index:2">  
+				  <h2>Les règles d'inclusion</h2>
+				  <ul>
+				  <li>Un lien Youtube</li>
+				  <li>Publié il y a maximum 31 jours</li>
+				  <li>Obligatoirement une vidéo</li>
+				  <li>Obligatoirement de la musique</li>
+				  <li>Etre un artiste d'outre-mer</li>
+				  </ul>
+				  
+				  </div>  
+               </div> <!-- end of row -->
+	      
+	</div>
+	
+
+

@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   get 'asso/index'
   get "lassociation.php", to: 'asso#index'
-  get "compositeurs.php", to: 'compositeurs#index'
+  get "compositeurs.php", to: 'compositeurs#index', as: :tous_composers
   get "compositeur.php", to: 'compositeurs#show'
+  get "moncompositeur.php", to: 'compositeurs#moncompositeur'
+  post "moncompositeur.php", to: 'compositeurs#ajoutermoncompositeur'
   get "realisateurs.php", to: 'realisateurs#index'
   get "realisateur.php", to: 'realisateurs#show'
   resources :comments
