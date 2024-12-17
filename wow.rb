@@ -44,7 +44,7 @@ def search_musical_style(song, artist, agent)
   matching_cat = index_to_cat.min_by { |index, cat| index }&.first
   p matching_cat
 
-  matching_cat
+  index_to_cat[matching_cat]
 end
 
 

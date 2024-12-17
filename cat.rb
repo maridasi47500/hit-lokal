@@ -27,6 +27,7 @@ def scrape_categories(url, agent)
 
   categories
 end
+Cat.where(name: "[25]").destroy_all
 
 # Scrape the categories
 categories = scrape_categories(url, agent)
