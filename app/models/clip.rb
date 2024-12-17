@@ -14,7 +14,7 @@ class Clip < ApplicationRecord
   end
   def myfavclip
     if title.length > 0
-      self.artists = [Artist.find_or_initialize_by name: self.title.split("-")[0].strip.squish)]
+      self.artists = [Artist.find_or_initialize_by(name: self.title.split("-")[0].strip.squish)]
     end
     
   end

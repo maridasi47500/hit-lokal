@@ -41,7 +41,7 @@ def search_musical_style(song, artist, agent)
   end
 
   # Find the cat with the smallest index
-  matching_cat = index_to_cat.min_by { |index, cat| index }&.last
+  matching_cat = index_to_cat.min_by { |index, cat| index }&.first
   p matching_cat
 
   matching_cat
@@ -133,7 +133,7 @@ Chanson.all.each do |song|
   #artiste=Artist.find_or_create_by(name: song.artist)
   konpa=search_musical_style(song.title, song.artist,agent)
   cat=Cat.find_or_create_by(name:konpa)
-  k=Clip.new(cat_id:cat.id,title:song.artist+" - "+song.title,description: "Music video for #{song.title} by #{song.artist}", link: results[0][:url].split("?v=")[1], email: "info@example.com", region: "Region", video: true, sortie: Date.today)
+  k=Clip.new(user_id:1,cat_id:cat.id,title:song.artist+" - "+song.title,description: "Music video for #{song.title} by #{song.artist}", link: results[0][:url].split("?v=")[1], email: "info@example.com", region: "Region", video: true, sortie: Date.today)
 
   p k
   if k.save
