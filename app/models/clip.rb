@@ -11,6 +11,8 @@ class Clip < ApplicationRecord
   end
   def mytitle
     self.title.split("-")[1].strip.squish
+  rescue
+    self.title
   end
   def myfavclip
     if title.length > 0

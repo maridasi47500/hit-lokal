@@ -9,19 +9,22 @@ agent = Mechanize.new
 @driver = Selenium::WebDriver.for :firefox # Ensure you have Firefox installed or change to another browser
 @driver.navigate.to "https://www.google.com"
 
-# Function to search Google for the musical style of a song
 def search_musical_style(song, artist, agent)
-  query = "#{song} #{artist.split("feat")[0]} musical style".gsub(' ', '+')
+  query = "qobuz #{artist.split("feat")[0]} #{song} genres musical".gsub(' ', '+').downcase
   query = query.gsub('.', '')
+  query = query.gsub('&', '')
+  query = query.gsub('-', '')
+  query = query.gsub('++', '+')
   p query
   url = "https://www.google.com/search?q=#{query}"
   p url
 
   begin
-    agent = Mechanize.new
-    page = agent.get(url)
-    doc = page.body.downcase
-  rescue Mechanize::ResponseCodeError => e
+    page = URI.open(url.downcase)
+    p "hey"
+    p page
+    doc = Nokogiri::HTML(page.read).to_s.downcase
+  rescue  => e
     puts "Error accessing URL: #{e.message}"
     return nil
   end
@@ -29,23 +32,25 @@ def search_musical_style(song, artist, agent)
   # Extract all cat names and check if they are included in the document
   cats = Cat.all
   index_to_cat = {}
+  p index_to_cat
 
   cats.where("length(name) >= 3").each do |cat|
-    p cat.name
-    yesok=I18n.transliterate(cat.name.downcase)
-    if doc.include?(yesok)
-      yeah=doc.index(yesok)
-      p yeah
-      index_to_cat[yeah] = cat.name
-    end
+      yesok=I18n.transliterate(cat.name.downcase)
+      if doc.include?(yesok)
+        yeah=doc.index(yesok)
+        index_to_cat[yeah]= cat.name
+      end
+
   end
+  p index_to_cat
 
   # Find the cat with the smallest index
-  matching_cat = index_to_cat.min_by { |index, cat| index }&.first
+  matching_cat = index_to_cat.min_by { |index, _| index}&.last
   p matching_cat
+  matching_cat
 
-  index_to_cat[matching_cat]
 end
+
 
 
 

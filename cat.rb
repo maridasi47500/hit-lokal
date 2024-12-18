@@ -5,8 +5,9 @@ require 'nokogiri'
 agent = Mechanize.new
 
 # URL of the Wikipedia page
-url = 'https://en.wikipedia.org/wiki/List_of_music_genres_and_styles'
+
 url = 'https://en.wikipedia.org/wiki/List_of_Caribbean_music_genres'
+url = 'https://en.wikipedia.org/wiki/List_of_music_genres_and_styles'
 
 # Function to scrape the Wikipedia page for category links
 def scrape_categories(url, agent)
@@ -28,6 +29,9 @@ def scrape_categories(url, agent)
   categories
 end
 Cat.where(name: "[25]").destroy_all
+Cat.find_by(name:"Emo").delete
+Cat.find_by(name:"Axé").delete
+Cat.find_by(name:"Baul").delete
 
 # Scrape the categories
 categories = scrape_categories(url, agent)
