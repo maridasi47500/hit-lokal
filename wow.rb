@@ -130,15 +130,15 @@ songs = [
 ]
 
 # Search YouTube for each song
-#Chanson.where(url: nil).each do |song|
-Chanson.all.each do |song|
+Chanson.where(url: nil).each do |song|
+#Chanson.all.each do |song|
   results = search_youtube(song.title, song.artist)
   
   song.update(url: results[0][:url])
   #artiste=Artist.find_or_create_by(name: song.artist)
   konpa=search_musical_style(song.title, song.artist,agent)
   cat=Cat.find_or_create_by(name:konpa)
-  k=Clip.new(user_id:1,cat_id:cat.id,title:song.artist+" - "+song.title,description: "Music video for #{song.title} by #{song.artist}", link: results[0][:url].split("?v=")[1], email: "info@example.com", region: "Region", video: true, sortie: Date.today)
+  k=Clip.new(user_id:1,cat_id:cat.id,title:song.artist+" - "+song.title,description: "Music video for #{song.title} by #{song.artist}", link: results[0][:url].split("?v=")[1], email: "info@example.com", region: "1111", video: true, sortie: Date.today)
 
   p k
   if k.save
@@ -149,7 +149,6 @@ Chanson.all.each do |song|
 rescue => e
   p "ouille"
   p e.message
-  p k.errors
   p song.artist
   p song.title
 end
