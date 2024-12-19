@@ -107,6 +107,7 @@ if (window.innerWidth < 992) {
             
                                 
                     <form action="/ajouter.php" method="post">
+<input type="hidden" name="formulaire" value="bonjour" />
 <input type="hidden" name="user_id" value="<%=current_user.try(:id)%>" />
 					
 					    		<div class="form-group">

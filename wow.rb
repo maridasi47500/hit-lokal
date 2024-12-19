@@ -130,8 +130,8 @@ songs = [
 ]
 
 # Search YouTube for each song
-Chanson.where(url: nil).each do |song|
-#Chanson.all.each do |song|
+#Chanson.where(url: nil).each do |song|
+Chanson.all.each do |song|
   results = search_youtube(song.title, song.artist)
   
   song.update(url: results[0][:url])

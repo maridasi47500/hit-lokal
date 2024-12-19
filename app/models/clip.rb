@@ -3,6 +3,7 @@ class Clip < ApplicationRecord
   belongs_to :cat
   has_and_belongs_to_many :artists, :join_table => :clipsartists
   after_validation :myfavclip
+  attr_accessor :formulaire
   def self.nouveautes
     where("created_at > ?", (DateTime.now - 4.month).beginning_of_month).order(sortie: :desc)
   end
@@ -59,7 +60,9 @@ class Clip < ApplicationRecord
   before_validation :myfunc
   def myfunc
     videos = Yt::Collections::Videos.new
-    self.title= videos.where(id: self.link+',invalid').map(&:title)[0]
+    if self.formulaire == "bonjour"
+      self.title= videos.where(id: self.link+',invalid').map(&:title)[0] #pour formulaire
+    end
     self.description= videos.where(id: self.link+',invalid').map(&:description)[0]
     self.sortie= videos.where(id: self.link+',invalid').map(&:published_at)[0].to_date
     thumb=VideoThumb::get("http://www.youtube.com/watch?v=#{self.link}", "medium")
