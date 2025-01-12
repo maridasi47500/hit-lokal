@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   post "fetch-artistes-letters.php", to: "artists#artistletters"
   get "/top/nouveautes", to: "tops#nouveautes"
   get "/videos.php", to: "clips#showclip"
+  get "/lien.php", to: "clips#lien"
   get "/top/videos/:title.html", to: "clips#showclip", as: :linktovideo
   scope(:path_names => { :new => "nouveau", :edit => "editer" }) do
   resources :news, :path => "actualites"

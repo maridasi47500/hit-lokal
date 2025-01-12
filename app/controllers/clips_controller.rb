@@ -12,6 +12,9 @@ class ClipsController < ApplicationController
 
     render :show
   end
+ def lien
+    @results=`ruby searchlink.rb "#{params[:artist]}" "#{params[:title]}"`
+ end
   def show
     View.create(clip_id: @clip.id)
   end

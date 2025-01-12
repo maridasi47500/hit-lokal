@@ -11,12 +11,17 @@ class Clip < ApplicationRecord
     where("parameterize(title) like ?",vid.parameterize)[0]
   end
   def mytitle
-    self.title.split("-")[1].strip.squish
+    #self.title=self.title.downcase.gsub("k-dilak", "k dilak")
+    #self.title=self.title.downcase.gsub("•", "-")
+    self.title.downcase.split("-")[1].strip.squish
   rescue
     self.title
   end
   def myfavclip
+
     if title.length > 0
+      #self.title=self.title.downcase.gsub("k-dilak", "k dilak")
+      #self.title=self.title.downcase.gsub("•", "-")
       self.artists = [Artist.find_or_initialize_by(name: self.title.split("-")[0].strip.squish)]
     end
     

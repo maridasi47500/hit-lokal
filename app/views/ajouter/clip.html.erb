@@ -173,6 +173,19 @@ if (window.innerWidth < 992) {
 				  <h2>Les règles d'inclusion</h2>
 				  <ul>
 				  <li>Un lien Youtube</li>
+				  <li>
+<%= form_tag '/lien.php', method: :get do %>
+  <%= label_tag :artist, 'Artist' %>
+  <%= text_field_tag :artist %>
+  
+  <%= label_tag :title, 'Title' %>
+  <%= text_field_tag :title %>
+
+  <%= submit_tag 'Submit' %>
+<% end %>
+
+
+</li>
 				  <li>Publié il y a maximum 31 jours</li>
 				  <li>Obligatoirement une vidéo</li>
 				  <li>Obligatoirement de la musique</li>
