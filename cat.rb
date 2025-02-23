@@ -29,9 +29,9 @@ def scrape_categories(url, agent)
   categories
 end
 Cat.where(name: "[25]").destroy_all
-Cat.find_by(name:"Emo").delete
-Cat.find_by(name:"Axé").delete
-Cat.find_by(name:"Baul").delete
+#Cat.find_by(name:"Emo").delete
+#Cat.find_by(name:"Axé").delete
+#Cat.find_by(name:"Baul").delete
 
 # Scrape the categories
 categories = scrape_categories(url, agent)

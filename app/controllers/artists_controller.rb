@@ -3,6 +3,10 @@ class ArtistsController < ApplicationController
   def show
     @artist=Artist.find(params[:ar])
   end
+  def recherche
+    @search=params[:s]
+    @vids=Clip.where("lower(title) like ?","%#{@search.gsub(" ","%").downcase}%")
+  end
   def artistletters
     @artists = Cat.artistes_l(params[:l],params[:getArtistdata])
     render layout: false, collection: @artists, partial: "artists/myartist"

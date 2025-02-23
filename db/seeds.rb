@@ -13,8 +13,8 @@
 #Cat.create(name:cat.inner_html.strip.squish)
 #end
 #Artist.left_joins(:clips).select("artists.*, count(clips.id) as mycount").group("artists.id").having("mycount = 0").destroy_all
-Clip.all.each do |clip|
-View.create(clip_id:clip.id, created_at: Date.today.monday)
-View.create(clip_id:clip.id, created_at: Date.today.last_week.monday)
-View.create(clip_id:clip.id, created_at: Date.today.last_week.last_week.monday)
-end
+Cat.find_or_create_by(name: "musique de film")
+Cat.find_or_create_by(name: "musique de jeux videos")
+#View.create(clip_id:clip.id, created_at: Date.today.monday)
+#View.create(clip_id:clip.id, created_at: Date.today.last_week.monday)
+#View.create(clip_id:clip.id, created_at: Date.today.last_week.last_week.monday)

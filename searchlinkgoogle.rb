@@ -29,6 +29,7 @@ end
 
 # Function to search YouTube for a song and artist
 def search_youtube(song, artist)
+
   query = "#{song} #{artist}"
   # Initialize the WebDriver
 
@@ -49,10 +50,12 @@ def search_youtube(song, artist)
   end
   # Search for the query
   search_box = @driver.find_element(name: 'q')
-  search_box.send_keys(query+" YouTube")
+  search_box.send_keys(query+" youtube")
+  sleep 2
   search_box.submit
+  wait1 = Selenium::WebDriver::Wait.new(timeout: 30)
 
-  wait.until { @driver.find_element(css: 'div#search') }
+  wait1.until { @driver.find_element(css: 'div#search div.g') }
   
   # Scrape the results
   results = []

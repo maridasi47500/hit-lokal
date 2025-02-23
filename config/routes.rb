@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get "top.php", to:'tops#index'
   get 'artists/show'
   get "/artiste.php", to: "artists#show"
+  get "/recherche.php", to: "artists#recherche"
   get "/artistes.php", to: "artists#index"
   post "fetch-artistes-style.php", to: "artists#artiststyle"
   post "fetch-artistes-letters.php", to: "artists#artistletters"
