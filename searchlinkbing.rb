@@ -60,7 +60,7 @@ def search_bing(song, artist)
     puts "URL: #{result[:url]}"
 
     if result[:url].include?("?v=")
-      puts "<a href=\"/ajouter.php?lienvid=#{result[:url].split("v=")[1]}\">ajouter à hit lokal</a>"
+      puts "<a href=\"/ajouter.php?lienvid=#{result[:url].split("v=")[1]}&titre=#{result[:title].gsub(" ","%20")}\">ajouter à hit lokal</a>"
     end
     puts "-" * 40
 

@@ -74,6 +74,6 @@ class ClipsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def clip_params
-      params.permit(:formulaire,:fcat, :ytube, :femail, :freg, :video,:user_id)
+      params.permit(:titrevideo,:formulaire,:fcat, :ytube, :femail, :freg, :video,:user_id)
     end
 end

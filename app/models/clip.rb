@@ -4,6 +4,7 @@ class Clip < ApplicationRecord
   has_and_belongs_to_many :artists, :join_table => :clipsartists
   after_validation :myfavclip
   attr_accessor :formulaire
+  attr_accessor :titrevideo
   def self.nouveautes
     where("created_at > ?", (DateTime.now - 4.month).beginning_of_month).order(sortie: :desc)
   end
@@ -15,14 +16,14 @@ class Clip < ApplicationRecord
     #self.title=self.title.downcase.gsub("•", "-")
     self.title.downcase.split("-")[1].strip.squish
   rescue
-    self.title
+    self.titrevideo
   end
   def myfavclip
 
     if title.length > 0
       #self.title=self.title.downcase.gsub("k-dilak", "k dilak")
       #self.title=self.title.downcase.gsub("•", "-")
-      self.artists = [Artist.find_or_initialize_by(name: self.title.split("-")[0].strip.squish)]
+      self.artists = [Artist.find_or_initialize_by(name: self.titrevideo.split("-")[0].strip.squish)]
     end
     
   end
@@ -68,6 +69,7 @@ class Clip < ApplicationRecord
     if self.formulaire == "bonjour"
       self.title= videos.where(id: self.link+',invalid').map(&:title)[0] #pour formulaire
     end
+    self.title = self.titrevideo
     self.description= videos.where(id: self.link+',invalid').map(&:description)[0]
     self.sortie= videos.where(id: self.link+',invalid').map(&:published_at)[0].to_date
     thumb=VideoThumb::get("http://www.youtube.com/watch?v=#{self.link}", "medium")
@@ -81,6 +83,6 @@ class Clip < ApplicationRecord
     self.joins(:views).select("clips.*, (select count(views.id) as countview from views group by views.clip_id, strftime('%W',views.created_at) having views.clip_id = clips.id order by countview desc,strftime('%W',views.created_at) desc limit 1) as countviews").group("clips.id").limit(3)
   end
   def myartist
-    self.title.split("-")[0].strip.squish
+    self.titrevideo.split("-")[0].strip.squish
   end
 end
