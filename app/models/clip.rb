@@ -83,6 +83,7 @@ class Clip < ApplicationRecord
     self.joins(:views).select("clips.*, (select count(views.id) as countview from views group by views.clip_id, strftime('%W',views.created_at) having views.clip_id = clips.id order by countview desc,strftime('%W',views.created_at) desc limit 1) as countviews").group("clips.id").limit(3)
   end
   def myartist
-    self.titrevideo.split("-")[0].strip.squish
+      
+    self.titrevideo ? self.titrevideo.split("-")[0].strip.squish : self.artists[0].name
   end
 end

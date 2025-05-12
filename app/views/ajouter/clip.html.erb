@@ -192,6 +192,17 @@ if (window.innerWidth < 992) {
 
 
 </li>
+				  <li>
+<%= form_tag '/autrelien.php', method: :get do %>
+  <%= label_tag :channel, 'channel' %>
+  <%= text_field_tag :channel %>
+  
+
+  <%= submit_tag 'Submit' %>
+<% end %>
+
+
+</li>
 				  <li>Publié il y a maximum 31 jours</li>
 				  <li>Obligatoirement une vidéo</li>
 				  <li>Obligatoirement de la musique</li>

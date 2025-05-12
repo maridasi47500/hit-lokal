@@ -15,6 +15,22 @@ class ClipsController < ApplicationController
  def lien
     @results=`ruby searchlinkbing.rb "#{params[:artist]}" "#{params[:title]}"`
  end
+ def autrelien
+
+    channel = Yt::Channel.new id:  "#{params[:channel]}"
+    channel.videos.each do |vid|
+    puts "Title: #{result[:title]}"
+    puts "URL: #{result[:url]}"
+
+    if result[:url].include?("?v=")
+      puts "<a href=\"/ajouter.php?lienvid=#{result[:url].split("v=")[1]}&titre=#{result[:title].gsub(" - YouTube","").gsub(" ","%20")}\">ajouter à hit lokal</a>"
+    end
+    puts "-" * 40
+    end
+
+
+    @results=`ruby searchlinkbing.rb "#{params[:artist]}" "#{params[:title]}"`
+ end
   def show
     View.create(clip_id: @clip.id)
   end
