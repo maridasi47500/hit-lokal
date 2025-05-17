@@ -15,21 +15,48 @@ class ClipsController < ApplicationController
  def lien
     @results=`ruby searchlinkbing.rb "#{params[:artist]}" "#{params[:title]}"`
  end
+
+  # Fonction pour récupérer les vidéos tendances par région
+  def trending_videos(region_code)
+    videos = Yt::Collections::Channels.new
+    trending = videos.where(chart: 'mostPopular', regionCode: region_code)
+    results=""
+  
+    trending.each do |video|
+      puts "#{video.title} - #{video.id}"
+      results << "<p>Title: #{vid.title}</p>"
+      results << "<p>URL: #{vid.id}</p>"
+
+      results << "<a href=\"/ajouter.php?lienvid=#{vid.id}&titre=#{vid.title.gsub("#","").gsub("(","").gsub(")","").gsub(" - YouTube","").gsub(" ","%20")}\">ajouter à hit lokal</a>"
+      results << "<hr>"
+    end
+  end
+  
+  # Codes régionaux pour Martinique, Guadeloupe et Guyane
+  def my_trending_videos
+    regions = { "FR" => "Martinique", "GP" => "Guadeloupe", "GF" => "Guyane" }
+    @results=""
+    
+    regions.each do |code, name|
+      @results << "<h2>Tendances en #{name}</h2>"
+      @results << self.trending_videos(code)
+    end
+  end
+
  def autrelien
 
-    channel = Yt::Channel.new id:  "#{params[:channel]}"
-    channel.videos.each do |vid|
-    puts "Title: #{result[:title]}"
-    puts "URL: #{result[:url]}"
+    video = Yt::Video.new id: params[:channel1]
+    channel = Yt::Channel.new id: video.channel_id 
+    @results=""
+    channel.videos.take(300).each do |vid|
+      @results << "<p>Title: #{vid.title}</p>"
+      @results << "<p>URL: #{vid.id}</p>"
 
-    if result[:url].include?("?v=")
-      puts "<a href=\"/ajouter.php?lienvid=#{result[:url].split("v=")[1]}&titre=#{result[:title].gsub(" - YouTube","").gsub(" ","%20")}\">ajouter à hit lokal</a>"
+      @results << "<a href=\"/ajouter.php?lienvid=#{vid.id}&titre=#{vid.title.gsub("#","").gsub("(","").gsub(")","").gsub(" - YouTube","").gsub(" ","%20")}\">ajouter à hit lokal</a>"
+      @results << "<hr>"
     end
-    puts "-" * 40
-    end
 
 
-    @results=`ruby searchlinkbing.rb "#{params[:artist]}" "#{params[:title]}"`
  end
   def show
     View.create(clip_id: @clip.id)

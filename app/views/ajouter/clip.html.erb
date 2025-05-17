@@ -194,8 +194,8 @@ if (window.innerWidth < 992) {
 </li>
 				  <li>
 <%= form_tag '/autrelien.php', method: :get do %>
-  <%= label_tag :channel, 'channel' %>
-  <%= text_field_tag :channel %>
+  <%= label_tag :channel1, 'channel video https://www.youtube.com/watch?v=' %>
+  <%= text_field_tag :channel1 %>
   
 
   <%= submit_tag 'Submit' %>
@@ -203,6 +203,7 @@ if (window.innerWidth < 992) {
 
 
 </li>
+				  <li><%=link_to "my trending videos les plus populaire en guyane, martinique, guadeloupe","/my_trending_videos.php"%></li>
 				  <li>Publié il y a maximum 31 jours</li>
 				  <li>Obligatoirement une vidéo</li>
 				  <li>Obligatoirement de la musique</li>
