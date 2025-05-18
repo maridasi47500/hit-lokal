@@ -1,3 +1,5 @@
+require 'open-uri'
+require 'nokogiri'
 class ClipsController < ApplicationController
   before_action :set_clip, only: %i[ show edit update destroy ]
 
@@ -16,30 +18,66 @@ class ClipsController < ApplicationController
     @results=`ruby searchlinkbing.rb "#{params[:artist]}" "#{params[:title]}"`
  end
 
-  # Fonction pour récupérer les vidéos tendances par région
-  def trending_videos(region_code)
-    videos = Yt::Collections::Channels.new
-    trending = videos.where(chart: 'mostPopular', regionCode: region_code)
-    results=""
-  
-    trending.each do |video|
-      puts "#{video.title} - #{video.id}"
-      results << "<p>Title: #{vid.title}</p>"
-      results << "<p>URL: #{vid.id}</p>"
 
-      results << "<a href=\"/ajouter.php?lienvid=#{vid.id}&titre=#{vid.title.gsub("#","").gsub("(","").gsub(")","").gsub(" - YouTube","").gsub(" ","%20")}\">ajouter à hit lokal</a>"
-      results << "<hr>"
+
+  
+  def artist_origin(artist_name)
+    url = "https://fr.wikipedia.org/wiki/#{artist_name.gsub(' ', '_')}"
+    
+    begin
+      page = Nokogiri::HTML(URI.open(url))
+  
+      # Trouver l'infobox
+      infobox = page.css('.infobox_v3')
+  
+      artist_info = {}
+      artist_info[:nom] = infobox.css('.entete div').text.strip
+      artist_info[:image_url] = infobox.css('.images img').attr('src').value
+      artist_info[:naissance] = page.css('th:contains("Naissance") + td').text.strip
+      artist_info[:origine] = page.text.downcase.include?("Portail de la musique") && (page.text.downcase.include?("martinique") || page.text.downcase.include?("guadeloupe") || page.text.downcase.include?("guyane"))
+  
+      return artist_info[:origine]
+    rescue
+      return false
     end
   end
+  def extract_artists_title(video_title)
+    return ["Inconnu"], "Titre inconnu" if video_title.strip.empty?
   
-  # Codes régionaux pour Martinique, Guadeloupe et Guyane
+    artists_title = video_title.split(/[-,&]/).map(&:strip)
+    return ["Inconnu"], video_title if artists_title.size < 2
+  
+    artists = artists_title[0..-2] # Tous sauf le dernier élément
+    title = artists_title[-1] # Dernier élément = titre
+  
+    return artists, title
+  end
+
+  
+  
   def my_trending_videos
-    regions = { "FR" => "Martinique", "GP" => "Guadeloupe", "GF" => "Guyane" }
-    @results=""
-    
-    regions.each do |code, name|
+    region = { "FR" => "France" }
+    @results = ""
+  
+    region.each do |code, name|
+      videos = Yt::Collections::Videos.new
+      trending = videos.where(chart: 'mostPopular', regionCode: code, categoryId: '10')
+      results = ""
+  
+      trending.each do |video|
+        artists, title = self.extract_artists_title(video.title)
+        if artists.any?{|artist|artist_origin(artist)}
+          results << "<p>Title: #{title}</p>"
+          results << "<p>Artist: #{artist}</p>"
+          results << "<p>URL: #{video.id}</p>"
+          results << "<a href=\"/ajouter.php?lienvid=#{video.id}&titre=#{video.title.gsub('#','').gsub('(','').gsub(')','').gsub(' - YouTube','').gsub(' ','%20')}\">ajouter à hit lokal</a>"
+          results << "<hr>"
+        end
+      end
+      results
+
       @results << "<h2>Tendances en #{name}</h2>"
-      @results << self.trending_videos(code)
+      @results << results
     end
   end
 
