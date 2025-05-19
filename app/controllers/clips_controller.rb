@@ -34,7 +34,7 @@ class ClipsController < ApplicationController
       artist_info[:nom] = infobox.css('.entete div').text.strip
       artist_info[:image_url] = infobox.css('.images img').attr('src').value
       artist_info[:naissance] = page.css('th:contains("Naissance") + td').text.strip
-      artist_info[:origine] = page.text.downcase.include?("Portail de la musique") && (page.text.downcase.include?("martinique") || page.text.downcase.include?("guadeloupe") || page.text.downcase.include?("guyane"))
+      artist_info[:origine] = page.text.downcase.include?("Genre musical") && (page.text.downcase.include?("martinique") || page.text.downcase.include?("guadeloupe") || page.text.downcase.include?("guyane"))
   
       return artist_info[:origine]
     rescue
@@ -81,6 +81,9 @@ class ClipsController < ApplicationController
     end
   end
 
+ def autrelien1
+    @results=`ruby classement.rb`
+ end
  def autrelien
 
     video = Yt::Video.new id: params[:channel1]

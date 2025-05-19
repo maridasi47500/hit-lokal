@@ -1,5 +1,6 @@
 
 require 'open-uri'
+require 'uri'
 require 'nokogiri'
 
 class LabelScraper
@@ -95,17 +96,30 @@ class Artist
   end
 
   def search_wikipedia_professions
-    base_url = "https://fr.m.wikipedia.org/w/index.php?search="
+    base_url = "https://fr.m.wikipedia.org/w/index.php"
     artists_array = []
 
     MUSIC_PROFESSIONS.each do |profession|
       TERRITORIES.each do |territory|
-        search_url = "#{base_url}#{URI.encode_www_form_component(profession + ' ' + territory)}&title=Spécial%3ARecherche&profile=advanced&fulltext=1&ns0=1"
-        #search_url = URI.encode_www_form_component(search_url)
+        params = {
+          search: "#{profession} #{territory}",
+          title: "Spécial:Recherche",
+          profile: "advanced",
+          fulltext: "1",
+          ns0: "1"
+        }
+        
+        query = URI.encode_www_form(params)
+        search_url = "#{base_url}?#{query}"
+        
+        puts search_url
+        doc = Nokogiri::HTML(URI.open(search_url))
+
 
         begin
           doc = Nokogiri::HTML(URI.open(search_url))
           results = doc.css('div.mw-search-result-heading a').map { |link| { name: link.text, country: territory } }
+          p results
           artists_array.concat(results)
         rescue => e
           puts "Erreur lors de la récupération des données de #{search_url}: #{e.message}"

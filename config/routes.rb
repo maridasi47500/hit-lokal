@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get "/videos.php", to: "clips#showclip"
   get "/lien.php", to: "clips#lien"
   get "/autrelien.php", to: "clips#autrelien"
+  get "/autrelien1.php", to: "clips#autrelien1"
   get "/my_trending_videos.php", to: "clips#my_trending_videos"
 
   get "/top/videos/:title.html", to: "clips#showclip", as: :linktovideo
