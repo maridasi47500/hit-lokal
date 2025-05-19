@@ -1,5 +1,4 @@
-
-‌
+require 'uri'
 class Label
   attr_accessor :name, :artists
 
@@ -30,7 +29,6 @@ runhit = RunHitLabel.new
 runhit.add_artist("ST UNIT")
 runhit.list_artists
 
-‌
 require 'open-uri'
 require 'nokogiri'
 
@@ -63,7 +61,6 @@ scraper = RunHitScraper.new("https://runhit.fr/nos-artistes/")
 scraper.scrape_artists
 
 
-‌
 require 'open-uri'
 require 'nokogiri'
 
@@ -94,13 +91,6 @@ end
 # Execute the scraper for Al Music Records
 scraper = AlMusicRecordsScraper.new("https://almusicrecords.com/artistes/")
 scraper.scrape_artists
-
-liuk:h
-Aujourd'hui, à 18:34
-M
-De :	
-A :	" " <>
-‌
 require 'open-uri'
 require 'nokogiri'
 
@@ -110,13 +100,15 @@ class LabelScraper
   def initialize(region)
     @region = region
     @labels = { "Atipa Record" => "https://atiparecord.com" } if region == "Guyane"
+    @labels = { "aztec musique" => "https://aztecmusique.com" } if region == "Martinique"
+    @labels = { "hmc label" => "https://hmclabel.com/" } if region == "Guadeloupe"
     @artist_pages = {}
     @album_titles = []
   end
 
   # Search Bing for music label websites in the given region
   def search_labels
-    return if @labels.any? # Skip Bing search if labels are predefined
+    return if @labels and @labels.any? # Skip Bing search if labels are predefined
 
     query = "music labels in #{@region}"
     search_url = "https://www.bing.com/search?q=#{URI.encode_www_form_component(query)}"
@@ -196,12 +188,6 @@ regions.each do |region|
   scraper.display_results
 end
 
-miuiouk
-Aujourd'hui, à 18:32
-M
-De :	
-A :	" " <>
-‌
 require 'open-uri'
 require 'nokogiri'
 
@@ -241,70 +227,52 @@ end
 scraper = MetisFMScraper.new(10) # Adjust `10` to the actual number of pages
 scraper.scrape_artists
 
-hgjhyg
-Aujourd'hui, à 18:24
-M
-De :	
-A :	" " <>
-‌
-require 'open-uri'
 require 'nokogiri'
+require 'open-uri'
 
-class AztecMusiqueScraper
-  attr_accessor :categories, :artist_pages
+class AztequeLabel
+  attr_accessor :artists
 
   def initialize
-    @categories = []
-    @artist_pages = {}
+    @artists = []
   end
 
-  # Scrape categories dynamically from the site's navigation menu
-  def fetch_categories
-    base_url = "https://aztecmusique.com/"
-    
-    begin
-      doc = Nokogiri::HTML(URI.open(base_url))
-      @categories = doc.css('.sub-menu .menu-item a').map { |link| link['href'].split('/').last }.uniq
+  def scrape_artists(pages = 5)
+    base_url = 'https://aztecmusique.com/category/artistes/page/'
 
-      puts "\n📂 Categories extracted:"
-      @categories.each { |category| puts category }
-    rescue => e
-      puts "❌ Error fetching categories: #{e.message}"
+    (1..pages).each do |page_number|
+      url = "#{base_url}#{page_number}/"
+      doc = Nokogiri::HTML(URI.open(url))
+
+      puts "Scraping Page #{page_number}..."
+
+      doc.css('article.elementor-post').each do |post|
+        name = post.at_css('a.elementor-post__thumbnail__link')['href']
+        image = post.at_css('img')['src']
+        add_artist(name, image)
+      end
     end
   end
 
-  # Scrape artist listings for each category
-  def scrape_artists
-    @categories.each do |category|
-      aztec_url = "https://aztecmusique.com/category/artistes/#{category}/"
+  def add_artist(name, image_url)
+    @artists << { name: name, image: image_url }
+  end
 
-      begin
-        doc = Nokogiri::HTML(URI.open(aztec_url))
-        artists = doc.css('h2, .artist-name').map { |element| element.text.strip }.uniq
-        @artist_pages[category] = artists.reject(&:empty?)
-
-        puts "\n🎤 Artists found for #{category} on Aztec Musique:"
-        @artist_pages[category].each { |artist| puts artist }
-      rescue => e
-        puts "❌ Error scraping Aztec Musique for #{category}: #{e.message}"
-      end
+  def list_artists
+    @artists.each do |artist|
+      puts "Artist: #{artist[:name]}"
+      puts "Image URL: #{artist[:image]}"
+      puts "-" * 40
     end
   end
 end
 
-# Execute the scraper
-scraper = AztecMusiqueScraper.new
-scraper.fetch_categories
-scraper.scrape_artists
+# Example usage:
+label = AztequeLabel.new
+label.scrape_artists(9) # Scrapes the first 5 pages
+label.list_artists
 
-,htbkj
-Aujourd'hui, à 19:01
-M
-De :	
-A :	" " <>
-‌
-require 'open-uri'
-require 'nokogiri'
+
 
 class HMCLabelScraper
   attr_accessor :artists
@@ -333,13 +301,6 @@ end
 # Execute the scraper for HMC Label
 scraper = HMCLabelScraper.new("https://hmclabel.com/artistes/")
 scraper.scrape_artists
-
-li_èjoièyj
-Aujourd'hui, à 18:38
-M
-De :	
-A :	" " <>
-‌
 require 'open-uri'
 require 'nokogiri'
 
@@ -377,14 +338,6 @@ end
 scraper = DonsMusicScraper.new("https://donsmusic.com/music/")
 scraper.scrape_artists
 
-Fgiijnvcf
-Aujourd'hui, à 11:14
-M
-De :	
-A :	" " <>
-‌
-require 'open-uri'
-require 'nokogiri'
 
 class LabelScraper
   attr_accessor :region, :labels, :artist_pages
@@ -450,14 +403,6 @@ regions.each do |region|
   scraper.display_results
 end
 
-Gcsscbhinkn
-Aujourd'hui, à 11:01
-M
-De :	
-A :	" " <>
-‌
-require 'open-uri'
-require 'nokogiri'
 
 class Artist
   attr_accessor :name, :label, :albums
@@ -493,6 +438,7 @@ class Artist
     MUSIC_PROFESSIONS.each do |profession|
       TERRITORIES.each do |territory|
         search_url = "#{base_url}#{URI.encode_www_form_component(profession + ' ' + territory)}&title=Spécial%3ARecherche&profile=advanced&fulltext=1&ns0=1"
+        search_url = URI.encode_www_form_component(search_url)
 
         begin
           doc = Nokogiri::HTML(URI.open(search_url))
@@ -523,14 +469,6 @@ class Artist
   end
 end
 
-class Label
-  attr_accessor :name, :artists
-
-  def initialize(name)
-    @name = name
-    @artists = []
-  end
-end
 
 # Example usage:
 artist = Artist.new("Meryl")
@@ -538,164 +476,3 @@ artists_found = artist.search_wikipedia_professions
 puts "Artists found from Wikipedia search:"
 artists_found.each { |artist| puts "#{artist[:name]} - #{artist[:country]}" }
 
-Dxxcxfvc
-samedi 17 Mai, 15:32
-M
-De :	
-A :	" " <>
-‌
-class CreateExampleTable < ActiveRecord::Migration[7.1]
-
-  def change
-
-    create_table :example_table do |t|
-
-      t.string :name
-
-      t.date :date_of_birth  # Remplacement de "age" par "date_of_birth"
-
-      t.string :pays         # Ajout de la colonne "pays"
-
-      t.string :adresse      # Ajout de la colonne "adresse"
-
-      t.timestamps
-
-    end
-
-  end
-
-end
-
- 
-
-class CreateNezTable < ActiveRecord::Migration[7.1]
-
-  def change
-
-    create_table :nez_table do |t|
-
-      t.integer :example_table_one_id  # Première référence à example_table
-
-      t.integer :example_table_two_id  # Deuxième référence à example_table
-
-      t.string :fake_data              # Colonne pour des données factices
-
-      t.timestamps
-
-    end
-
-  end
-
-end
-
- 
-
-require 'faker'
-
- 
-
-nez_entry = NezTable.create(
-
-  example_table_one_id: 1,
-
-  example_table_two_id: 2,
-
-  fake_data: Faker::Lorem.sentence
-
-)
-
- 
-
-puts nez_entry.fake_data  # Affiche une phrase générée aléatoirement
-
- 
-
-require 'nokogiri'
-
-require 'open-uri'
-
-require 'countries'
-
- 
-
-url = "https://www.bing.com/news"
-
-page = Nokogiri::HTML(URI.open(url))
-
- 
-
-# Liste complète des pays
-
-pays = Country.all.map(&:name)
-
- 
-
-# Liste complète des sports
-
-sports = [
-
-  "football", "tennis", "rugby", "basketball", "natation", "cyclisme", "athlétisme", "boxe",
-
-  "judo", "karaté", "taekwondo", "hockey", "volleyball", "escrime", "handball", "golf",
-
-  "surf", "canoë-kayak", "plongée", "ski", "motocross", "parkour", "équitation"
-
-]
-
- 
-
-page.css('.news-card').each do |article|
-
-  titre = article.css('.title').text.strip
-
-  contenu = article.css('.snippet').text.strip
-
-  
-
-  pays_mentionnes = pays.select { |p| titre.include?(p) || contenu.include?(p) }
-
-  mentions_sport = sports.any? { |sport| titre.downcase.include?(sport) || contenu.downcase.include?(sport) }
-
- 
-
-  if pays_mentionnes.any?
-
-    type_article = mentions_sport ? "Sport" : "Autre"
-
- 
-
-    # Sélection aléatoire d'un nombre de pays
-
-    pays_random = pays.sample(pays_mentionnes.count)
-
- 
-
-    titre_modifie = titre.dup
-
-    contenu_modifie = contenu.dup
-
- 
-
-    pays_mentionnes.each_with_index do |pays, index|
-
-      titre_modifie.gsub!(pays, pays_random[index])
-
-      contenu_modifie.gsub!(pays, pays_random[index])
-
-    end
-
- 
-
-    puts "Titre : #{titre_modifie} (Pays remplacés : #{pays_mentionnes.count})"
-
-    puts "Contenu : #{contenu_modifie}"
-
-    puts "Catégorie : #{type_article}"
-
-    puts "-" * 50
-
-  end
-
-end
-
- 
