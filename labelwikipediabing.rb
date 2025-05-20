@@ -1,7 +1,7 @@
-
 require 'open-uri'
 require 'uri'
 require 'nokogiri'
+require 'json'
 
 class LabelScraper
   attr_accessor :region, :labels, :artist_pages
@@ -25,8 +25,8 @@ class LabelScraper
         @labels[label_name] = label_url if label_url.start_with?("http")
       end
 
-      puts "\n🎵 Music labels found in #{@region}:"
-      @labels.each { |name, url| puts "#{name} - #{url}" }
+      #puts "\n🎵 Music labels found in #{@region}:"
+      #@labels.each { |name, url| puts "#{name} - #{url}" }
     rescue => e
       puts "❌ Error fetching labels: #{e.message}"
     end
@@ -40,8 +40,8 @@ class LabelScraper
         artists = doc.css('p, li, a').map { |element| element.text.strip }.uniq
         @artist_pages[label_name] = artists.reject { |artist| artist.empty? }
 
-        puts "\n🎤 Artists found for #{label_name} (#{@region}):"
-        @artist_pages[label_name].each { |artist| puts artist }
+        #puts "\n🎤 Artists found for #{label_name} (#{@region}):"
+        #@artist_pages[label_name].each { |artist| puts artist }
       rescue => e
         puts "❌ Error scraping #{label_name}: #{e.message}"
       end
@@ -95,10 +95,13 @@ class Artist
     @albums << { title: title, year: year }
   end
 
-  def search_wikipedia_professions
-    base_url = "https://fr.m.wikipedia.org/w/index.php"
-    artists_array = []
 
+  
+  BASE_URL = "https://fr.m.wikipedia.org/w/index.php"
+  def search_wikipedia_professions
+
+    artists_array = []
+  
     MUSIC_PROFESSIONS.each do |profession|
       TERRITORIES.each do |territory|
         params = {
@@ -108,27 +111,41 @@ class Artist
           fulltext: "1",
           ns0: "1"
         }
-        
+  
         query = URI.encode_www_form(params)
-        search_url = "#{base_url}?#{query}"
-        
-        puts search_url
-        doc = Nokogiri::HTML(URI.open(search_url))
-
-
-        begin
-          doc = Nokogiri::HTML(URI.open(search_url))
-          results = doc.css('div.mw-search-result-heading a').map { |link| { name: link.text, country: territory } }
-          p results
-          artists_array.concat(results)
-        rescue => e
-          puts "Erreur lors de la récupération des données de #{search_url}: #{e.message}"
+        search_url = "#{BASE_URL}?#{query}"
+        page = 1
+  
+        loop do
+          #puts "🔍 Fetching Page #{page}: #{search_url}"
+  
+          begin
+            doc = Nokogiri::HTML(URI.open(search_url))
+            results = doc.css('div.mw-search-result-heading a').map { |link| { name: link.text, country: territory } }
+            artists_array.concat(results)
+  
+            # Find pagination link for next page
+            next_page_link = doc.at_css("a:contains('Suivant')")
+            break unless next_page_link # Stop if no more pages exist
+  
+            search_url = BASE_URL + next_page_link['href']
+            page += 1
+  
+          rescue => e
+            #puts "❌ Erreur lors de la récupération des données de #{search_url}: #{e.message}"
+            break
+          end
         end
       end
     end
+  
+    #puts "\n🎭 Liste des artistes trouvés:"
+    #artists_array.uniq.each { |artist| puts "#{artist[:name]} - #{artist[:country]}" }
+    artists_array.uniq
 
-    artists_array.uniq # Return unique artists with country info
   end
+
+
 
   def search_youtube_videos
     search_query = "#{@name} official music video"
@@ -150,5 +167,5 @@ end
 # Example usage:
 artist = Artist.new("Meryl")
 artists_found = artist.search_wikipedia_professions
-puts "Artists found from Wikipedia search:"
-artists_found.each { |artist| puts "#{artist[:name]} - #{artist[:country]}" }
+puts JSON.pretty_generate({"artists" => artists_found})
+

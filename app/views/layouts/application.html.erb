@@ -39,6 +39,7 @@ Hit Lokal | Toute la musique de Guadeloupe, Guyane, Martinique et Réunion</titl
 
                       <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
                           <%= javascript_importmap_tags %>
+<%= yield :mycss%>
 </head>
 <%=yield :css%>
 <body data-bs-spy="scroll" data-bs-target="#navbarExample" class=" bg-gray">

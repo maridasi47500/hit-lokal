@@ -1,0 +1,67 @@
+<%= content_for :mycss do%>    
+<style>
+        .artist-card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 8px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            text-align: center;
+            width: 200px;
+        }
+        .button-container {
+            margin-top: 10px;
+        }
+        button {
+            padding: 8px 12px;
+            margin: 5px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .yes {
+            background-color: #28a745;
+            color: white;
+        }
+        .no {
+            background-color: #dc3545;
+            color: white;
+        }
+    </style>
+<%end%>
+    <div id="artist-list">
+
+</div>
+<script>
+        const artists = JSON.parse(<%= @results.to_json.html_safe %>);
+        console.log(artists);
+        function renderArtists() {
+            const artistList = document.getElementById("artist-list");
+            artistList.innerHTML = "";
+
+            artists.artists.forEach(artist => {
+                const card = document.createElement("div");
+                card.className = "artist-card";
+                card.innerHTML = `<h3>${artist.name}</h3><p>${artist.country}</p>
+                    <div class="button-container">
+                        <button class="yes" onclick="sendResponse('${artist.name}', '${artist.country}', true)">Yes</button>
+                        <button class="no" onclick="sendResponse('${artist.name}', '${artist.country}', false)">No</button>
+                    </div>`;
+                artistList.appendChild(card);
+            });
+        }
+
+        function sendResponse(name, country, isArtist) {
+            const query = new URLSearchParams({ name, country, isArtist }).toString();
+            const url = `https://your-api-endpoint.com/verify?${query}`;
+
+            fetch(url, { method: "GET" })
+                .then(response => response.json())
+                .then(data => console.log("Server response:", data))
+                .catch(error => console.error("Error:", error));
+        }
+
+        renderArtists();
+    </script>
+

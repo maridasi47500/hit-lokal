@@ -21,6 +21,10 @@ class ClipsController < ApplicationController
 
 
   
+  def checkartist
+    @results=JSON.generate(JSON.parse(`ruby labelwikipediabing.rb`.gsub("(","").gsub(")","")))
+    p @results
+  end
   def artist_origin(artist_name)
     url = "https://fr.wikipedia.org/wiki/#{artist_name.gsub(' ', '_')}"
     
