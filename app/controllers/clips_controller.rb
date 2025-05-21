@@ -22,7 +22,7 @@ class ClipsController < ApplicationController
 
   
   def checkartist
-    @results=JSON.generate(JSON.parse(`ruby labelwikipediabing.rb`.gsub("(","").gsub(")","")))
+    @results=JSON.generate(JSON.parse(`ruby labelwikipediabing.rb`))
     p @results
   end
   def artist_origin(artist_name)

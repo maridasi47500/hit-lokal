@@ -28,6 +28,14 @@
             background-color: #dc3545;
             color: white;
         }
+        .search {
+            background-color: blue;
+            color: white;
+        }
+        .wiki{
+            background-color: purple;
+            color: white;
+        }
     </style>
 <%end%>
     <div id="artist-list">
@@ -47,6 +55,8 @@
                     <div class="button-container">
                         <button class="yes" onclick="sendResponse('${artist.name}', '${artist.country}', true)">Yes</button>
                         <button class="no" onclick="sendResponse('${artist.name}', '${artist.country}', false)">No</button>
+                        <a class="search" href="/lien.php?artist=${artist.name}&title=&commit=Submit" target="_blank">Search video</button>
+                        <a class="wiki" href="https://fr.wikipedia.org/wiki/${artist.name.replace(" ","_")}" target="_blank">Search wikipedia page</button>
                     </div>`;
                 artistList.appendChild(card);
             });

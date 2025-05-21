@@ -1,0 +1,2 @@
+module CheckartistsHelper
+end

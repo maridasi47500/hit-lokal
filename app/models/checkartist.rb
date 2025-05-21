@@ -1,0 +1,2 @@
+class Checkartist < ApplicationRecord
+end

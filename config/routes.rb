@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :checkartists do
+    collection do
+      post 'verify'
+    end
+  end
   get 'asso/index'
   get "lassociation.php", to: 'asso#index'
   get "compositeurs.php", to: 'compositeurs#index', as: :tous_composers

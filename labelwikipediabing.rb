@@ -50,7 +50,7 @@ class LabelScraper
 
   # Display artists with label name and region
   def display_results
-    puts "\n📌 Final list of Artists, their Label, and Region:"
+    #puts "\n📌 Final list of Artists, their Label, and Region:"
     @artist_pages.each do |label_name, artists|
       artists.each { |artist| puts "#{artist} - #{label_name} (#{@region})" }
     end
@@ -58,7 +58,7 @@ class LabelScraper
 end
 
 # Execute the script for each region
-regions = ["Guadeloupe", "Martinique", "Guyane"]
+regions = ["La Réunion","Mayotte","Guadeloupe", "Martinique", "Guyane"]
 
 #regions.each do |region|
 #  scraper = LabelScraper.new(region)
@@ -78,7 +78,7 @@ class Artist
     "Producteur", "Productrice", "Interprète"
   ]
 
-  TERRITORIES = ["Martinique", "Guadeloupe", "Guyane"]
+  TERRITORIES = ["La Réunion","Mayotte","Guadeloupe", "Martinique", "Guyane"]
 
   def initialize(name)
     @name = name
@@ -98,14 +98,14 @@ class Artist
 
   
   BASE_URL = "https://fr.m.wikipedia.org/w/index.php"
+  
   def search_wikipedia_professions
-
     artists_array = []
   
     MUSIC_PROFESSIONS.each do |profession|
       TERRITORIES.each do |territory|
         params = {
-          search: "#{profession} #{territory}",
+          search: "#{profession} \"#{territory}\"",
           title: "Spécial:Recherche",
           profile: "advanced",
           fulltext: "1",
@@ -117,22 +117,19 @@ class Artist
         page = 1
   
         loop do
-          #puts "🔍 Fetching Page #{page}: #{search_url}"
-  
           begin
+            #puts "🔍 Fetching Page #{page}: #{search_url}"
             doc = Nokogiri::HTML(URI.open(search_url))
             results = doc.css('div.mw-search-result-heading a').map { |link| { name: link.text, country: territory } }
             artists_array.concat(results)
   
-            # Find pagination link for next page
-            next_page_link = doc.at_css("a:contains('Suivant')")
-            break unless next_page_link # Stop if no more pages exist
+            next_page_link = doc.at_css("a.mw-nextlink")
+            break unless next_page_link
   
             search_url = BASE_URL + next_page_link['href']
             page += 1
-  
           rescue => e
-            #puts "❌ Erreur lors de la récupération des données de #{search_url}: #{e.message}"
+            #puts "❌ Erreur lors de la récupération des données: #{e.message}"
             break
           end
         end
@@ -142,10 +139,8 @@ class Artist
     #puts "\n🎭 Liste des artistes trouvés:"
     #artists_array.uniq.each { |artist| puts "#{artist[:name]} - #{artist[:country]}" }
     artists_array.uniq
-
   end
-
-
+  
 
   def search_youtube_videos
     search_query = "#{@name} official music video"

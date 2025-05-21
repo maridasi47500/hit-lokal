@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @checkartist %>
+
+<div>
+  <%= link_to "Edit this checkartist", edit_checkartist_path(@checkartist) %> |
+  <%= link_to "Back to checkartists", checkartists_path %>
+
+  <%= button_to "Destroy this checkartist", @checkartist, method: :delete %>
+</div>

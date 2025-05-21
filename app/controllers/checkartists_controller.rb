@@ -5,8 +5,8 @@ class CheckartistsController < ApplicationController
 
   # GET /checkartists or /checkartists.json
   def index
-    @checkartists = Checkartist.where(isArtist: true)
-    @results={:artists => @checkartists.as_json}
+    @checkartists = Checkartist.where(isArtist: 1)
+    @results=JSON.generate({:artists => @checkartists.as_json})
   end
 
   # GET /checkartists/1 or /checkartists/1.json
@@ -37,7 +37,7 @@ class CheckartistsController < ApplicationController
     end
   end
   def verify
-    x=params[:checkartist]
+    x=params
     @checkartist = Checkartist.find_or_create_by(name: x[:name], country: x[:country])
     @checkartist.isArtist = x[:isArtist] == "true" ? 1 : 0
 
