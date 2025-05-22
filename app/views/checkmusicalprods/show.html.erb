@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @checkmusicalprod %>
+
+<div>
+  <%= link_to "Edit this checkmusicalprod", edit_checkmusicalprod_path(@checkmusicalprod) %> |
+  <%= link_to "Back to checkmusicalprods", checkmusicalprods_path %>
+
+  <%= button_to "Destroy this checkmusicalprod", @checkmusicalprod, method: :delete %>
+</div>

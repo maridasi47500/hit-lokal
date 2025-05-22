@@ -14,10 +14,12 @@ gem "sprockets-rails"
 gem "mechanize"
 gem "certifi"
 gem 'concurrent-ruby', '1.3.4'
+gem "watir"
 
 
 # Use sqlite3 as the database for Active Record
 gem "sqlite3", "~> 1.4"
+gem 'httparty'
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"

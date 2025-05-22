@@ -21,6 +21,14 @@ class ClipsController < ApplicationController
 
 
   
+  def checkmuzikalprod
+    a=`ruby musikalprod.rb`
+    p "===="
+    p a
+    p "===="
+    @results=JSON.generate(JSON.parse(a))
+    p @results
+  end
   def checkartist
     @results=JSON.generate(JSON.parse(`ruby labelwikipediabing.rb`))
     p @results

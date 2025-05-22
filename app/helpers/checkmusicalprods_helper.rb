@@ -1,0 +1,2 @@
+module CheckmusicalprodsHelper
+end

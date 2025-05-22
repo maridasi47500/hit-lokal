@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :checkmusicalprods do
+    collection do
+      post 'verify'
+    end
+  end
   resources :checkartists do
     collection do
       post 'verify'
@@ -26,6 +31,7 @@ Rails.application.routes.draw do
   get "/autrelien.php", to: "clips#autrelien"
   get "/autrelien1.php", to: "clips#autrelien1"
   get "/checkartist.php", to: "clips#checkartist"
+  get "/checkmuzicalprod.php", to: "clips#checkmuzikalprod"
   get "/my_trending_videos.php", to: "clips#my_trending_videos"
 
   get "/top/videos/:title.html", to: "clips#showclip", as: :linktovideo

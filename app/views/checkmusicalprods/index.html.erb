@@ -1,0 +1,67 @@
+<%= content_for :mycss do%>    
+<style>
+        .musicalprod-card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 8px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            text-align: center;
+            width: 200px;
+        }
+        .button-container {
+            margin-top: 10px;
+        }
+        button {
+            padding: 8px 12px;
+            margin: 5px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .yes {
+            background-color: #28a745;
+            color: white;
+        }
+        .no {
+            background-color: #dc3545;
+            color: white;
+        }
+    </style>
+<%end%>
+    <div id="musicalprod-list">
+
+</div>
+<script>
+        const musicalprods = JSON.parse(<%= @results.to_json.html_safe %>);
+        console.log(musicalprods);
+        function renderMusicalprods() {
+            const musicalprodList = document.getElementById("musicalprod-list");
+            musicalprodList.innerHTML = "";
+
+            musicalprods.musicalprods.forEach(musicalprod => {
+                const card = document.createElement("div");
+                card.className = "musicalprod-card";
+                card.innerHTML = `<h3>${musicalprod.name}</h3><p>${musicalprod.country}</p>
+                    <div class="button-container">
+                        <button class="yes" onclick="sendResponse('${musicalprod.name}', '${musicalprod.country}', true)">Yes</button>
+                        <button class="no" onclick="sendResponse('${musicalprod.name}', '${musicalprod.country}', false)">No</button>
+                    </div>`;
+                musicalprodList.appendChild(card);
+            });
+        }
+
+        function sendResponse(name, country, isMusicalprod) {
+            const query = new URLSearchParams({ name, country, isMusicalprod }).toString();
+            const url = `/checkmusicalprods/verify?${query}`;
+
+            fetch(url, { method: "POST" })
+                .then(response => response.json())
+                .then(data => console.log("Server response:", data))
+                .catch(error => console.error("Error:", error));
+        }
+
+        renderMusicalprods();
+    </script>
+

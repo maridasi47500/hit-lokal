@@ -1,0 +1,2 @@
+class Checkmusicalprod < ApplicationRecord
+end
