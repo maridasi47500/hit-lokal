@@ -47,6 +47,8 @@
                     <div class="button-container">
                         <button class="yes" onclick="sendResponse('${musicalprod.name}', '${musicalprod.country}', true)">Yes</button>
                         <button class="no" onclick="sendResponse('${musicalprod.name}', '${musicalprod.country}', false)">No</button>
+                        <a class="search" href="/lien.php?artist=${musicalprod.name}&title=&commit=Submit" target="_blank">Search music video</button>
+
                     </div>`;
                 musicalprodList.appendChild(card);
             });

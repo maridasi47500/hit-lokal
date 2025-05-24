@@ -14,8 +14,8 @@ agent = Mechanize.new
 
 class MaproductionmusicaleLabel
   SEARCH_URL = "https://www.bing.com/search?q="
-  LOCATIONS = ["Martinique", "Guadeloupe", "Guyane", "Mayotte", "La Réunion"]
-  PLATFORMS = ["Instagram", "Facebook", "YouTube"]
+  LOCATIONS = [ARGV[0]]
+  PLATFORMS = [ARGV[1]]
 
   def initialize
 
@@ -32,7 +32,7 @@ class MaproductionmusicaleLabel
 
     LOCATIONS.each do |location|
       PLATFORMS.each do |platform|
-        query = "musical prod #{location} #{platform}"
+        query = "music prod #{location} #{platform}"
         scrape_pages(query, location)
       end
     end
@@ -45,7 +45,7 @@ class MaproductionmusicaleLabel
 
   private
 
-  def scrape_pages(query, location, max_pages = 5)
+  def scrape_pages(query, location, max_pages = 10)
     page = 1
     while page <= max_pages
       search_url = SEARCH_URL + CGI.escape(query) + "&first=#{(page - 1) * 10 + 1}"

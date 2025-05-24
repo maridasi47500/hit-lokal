@@ -207,6 +207,36 @@ if (window.innerWidth < 992) {
 				  <li><%=link_to "classement guyane, martinique, guadeloupe",'/autrelien1.php'%></li>
 				  <li><%=link_to "chercher des artistes",'/checkartist.php'%></li>
 				  <li><%=link_to "chercher des productions musicales",'/checkmuzicalprod.php'%></li>
+  <%locations = ["Martinique", "Guadeloupe", "Guyane", "Mayotte", "La Réunion"]%>
+
+<%locations.each do |loc|%>
+				  <li>
+chercher des productions musicales <%=loc%>
+<%["facebook","instagram","youtube"].each do |hey|%>
+				  <%=link_to "#{hey}", "/checkmuzicalprodcountry.php?country=#{loc}&facebook=#{hey}"%>
+<%end%>
+</li>
+<%end%>
+<%
+  hit_lokal_categories = [
+    "Album", "Artiste de l’année", "Collaboration", "Collaboration Dancehall",
+    "Collaboration Hip-Hop", "Collaboration trap", "Collaboration zouk",
+    "Dancehall Féminin", "Dancehall Masculin", "DJ", "Hip-hop/rap féminin",
+    "Hip-hop/rap masculin", "Hit de l’année", "Premier album", "Prix Air Caraïbes",
+    "Prix Trace Hit Lokal", "Réalisateur", "Reggae", "Revelation féminine",
+    "Révélation masculine", "Soca bouyon", "Soul & Traditionnel", "Trap",
+    "Trophée d’honneur", "Zouk féminin", "Zouk masculin"
+  ]
+%>
+<%hit_lokal_categories.each do |loc|%>
+				  <li>
+chercher des clips de musique  <%=loc%>
+<%["facebook","instagram","youtube"].each do |hey|%>
+				  <%=link_to "#{hey}", "/checkmuzicalprodcountry.php?country=#{loc}&facebook=#{hey}"%>
+<%end%>
+</li>
+<%end%>
+
 				  <li>Publié il y a maximum 31 jours</li>
 				  <li>Obligatoirement une vidéo</li>
 				  <li>Obligatoirement de la musique</li>

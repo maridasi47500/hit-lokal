@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   get "/autrelien1.php", to: "clips#autrelien1"
   get "/checkartist.php", to: "clips#checkartist"
   get "/checkmuzicalprod.php", to: "clips#checkmuzikalprod"
+  get "/checkmuzicalprodcountry.php", to: "clips#checkmuzikalprodcountry"
   get "/my_trending_videos.php", to: "clips#my_trending_videos"
 
   get "/top/videos/:title.html", to: "clips#showclip", as: :linktovideo

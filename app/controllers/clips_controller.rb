@@ -21,6 +21,15 @@ class ClipsController < ApplicationController
 
 
   
+  def checkmuzikalprodcountry
+    a=`ruby musikalprodcountry.rb "#{params[:country]}" "#{params[:facebook]}"`
+    p "===="
+    p a
+    p "===="
+    @results=JSON.generate(JSON.parse(a))
+    p @results
+    render :checkmuzikalprod
+  end
   def checkmuzikalprod
     a=`ruby musikalprod.rb`
     p "===="
