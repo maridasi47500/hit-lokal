@@ -203,17 +203,17 @@ if (window.innerWidth < 992) {
 
 
 </li>
-				  <li><%=link_to "my trending videos les plus populaire en guyane, martinique, guadeloupe","/my_trending_videos.php"%></li>
-				  <li><%=link_to "classement guyane, martinique, guadeloupe",'/autrelien1.php'%></li>
-				  <li><%=link_to "chercher des artistes",'/checkartist.php'%></li>
-				  <li><%=link_to "chercher des productions musicales",'/checkmuzicalprod.php'%></li>
+				  <li><%=button_to "my trending videos les plus populaire en guyane, martinique, guadeloupe","/my_trending_videos.php", {:method => :get}%></li>
+				  <li><%=button_to "classement guyane, martinique, guadeloupe",'/autrelien1.php', {:method => :get}%></li>
+				  <li><%=button_to "chercher des artistes",'/checkartist.php', {:method => :get}%></li>
+				  <li><%=button_to "chercher des productions musicales",'/checkmuzicalprod.php', {:method => :get}%></li>
   <%locations = ["Martinique", "Guadeloupe", "Guyane", "Mayotte", "La Réunion"]%>
 
 <%locations.each do |loc|%>
 				  <li>
 chercher des productions musicales <%=loc%>
 <%["facebook","instagram","youtube"].each do |hey|%>
-				  <%=link_to "#{hey}", "/checkmuzicalprodcountry.php?country=#{loc}&facebook=#{hey}"%>
+				  <%=button_to "#{hey}", "/checkmuzicalprodcountry.php?country=#{CGI.escape(loc)}&facebook=#{CGI.escape(hey)}", {:method => :get, params: {country: CGI.escape(loc), facebook: CGI.escape(hey)}}%>
 <%end%>
 </li>
 <%end%>
@@ -232,7 +232,8 @@ chercher des productions musicales <%=loc%>
 				  <li>
 chercher des clips de musique  <%=loc%>
 <%["facebook","instagram","youtube"].each do |hey|%>
-				  <%=link_to "#{hey}", "/checkmuzicalprodcountry.php?country=#{loc}&facebook=#{hey}"%>
+
+				  <%=button_to "#{hey}", "/checkmuzicalprodcountry.php?country=#{CGI.escape(loc)}&facebook=#{CGI.escape(hey)}", {:method => :get, params: {country: CGI.escape(loc), facebook: CGI.escape(hey)}}%>
 <%end%>
 </li>
 <%end%>

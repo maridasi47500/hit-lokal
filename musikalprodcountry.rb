@@ -32,7 +32,7 @@ class MaproductionmusicaleLabel
 
     LOCATIONS.each do |location|
       PLATFORMS.each do |platform|
-        query = "music prod #{location} #{platform}"
+        query = "music prod french caribean #{location} #{platform}"
         scrape_pages(query, location)
       end
     end

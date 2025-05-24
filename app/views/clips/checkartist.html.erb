@@ -33,6 +33,7 @@
     <div id="artist-list">
 
 </div>
+<button id="renderartist" onclick="renderArtists();return false;">render artists</button>
 <script>
         const artists = JSON.parse(<%= @results.to_json.html_safe %>);
         console.log(artists);
