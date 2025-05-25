@@ -42,6 +42,11 @@
             }
               </style>
 <%end%>
+<body>
+
+
+
+
 <script>
 document.addEventListener("DOMContentLoaded", function(){
 // make it as accordion for smaller screens
@@ -207,7 +212,24 @@ if (window.innerWidth < 992) {
 				  <li><%=button_to "classement guyane, martinique, guadeloupe",'/autrelien1.php', {:method => :get}%></li>
 				  <li><%=button_to "chercher des artistes",'/checkartist.php', {:method => :get}%></li>
 				  <li><%=button_to "chercher des productions musicales",'/checkmuzicalprod.php', {:method => :get}%></li>
-  <%locations = ["Martinique", "Guadeloupe", "Guyane", "Mayotte", "La Réunion"]%>
+  <%locations = [
+  "Martinique",
+  "Guadeloupe",
+  "Guyane",
+  "Mayotte",
+  "La Réunion",
+  "Saint-Martin",
+  "Saint-Barthélemy",
+  "Nouvelle-Calédonie",
+  "Polynésie française",
+  "Wallis-et-Futuna",
+  "Haiti",
+  "Seychelles",
+  "Maurice",
+  "Madagascar",
+  "Comores"
+]
+%>
 
 <%locations.each do |loc|%>
 				  <li>
@@ -217,26 +239,15 @@ chercher des productions musicales <%=loc%>
 <%end%>
 </li>
 <%end%>
-<%
-  hit_lokal_categories = [
-    "Album", "Artiste de l’année", "Collaboration", "Collaboration Dancehall",
-    "Collaboration Hip-Hop", "Collaboration trap", "Collaboration zouk",
-    "Dancehall Féminin", "Dancehall Masculin", "DJ", "Hip-hop/rap féminin",
-    "Hip-hop/rap masculin", "Hit de l’année", "Premier album", "Prix Air Caraïbes",
-    "Prix Trace Hit Lokal", "Réalisateur", "Reggae", "Revelation féminine",
-    "Révélation masculine", "Soca bouyon", "Soul & Traditionnel", "Trap",
-    "Trophée d’honneur", "Zouk féminin", "Zouk masculin"
-  ]
-%>
-<%hit_lokal_categories.each do |loc|%>
-				  <li>
-chercher des clips de musique  <%=loc%>
-<%["facebook","instagram","youtube"].each do |hey|%>
+<li>
+    <h2>Choisissez un pays :</h2>
+<%locations.each_with_index do |loc,i|%>
+    <label><input type="radio" name="country" value="<%=loc%>" <%=i==0 ? "checked" : ""%>> <%=loc%></label>
+<%end%>
 
-				  <%=button_to "#{hey}", "/checkmuzicalprodcountry.php?country=#{CGI.escape(loc)}&facebook=#{CGI.escape(hey)}", {:method => :get, params: {country: CGI.escape(loc), facebook: CGI.escape(hey)}}%>
-<%end%>
+    <h2>Liste des clips musicaux :</h2>
+    <div id="musicList"></div>
 </li>
-<%end%>
 
 				  <li>Publié il y a maximum 31 jours</li>
 				  <li>Obligatoirement une vidéo</li>
@@ -248,6 +259,49 @@ chercher des clips de musique  <%=loc%>
                </div> <!-- end of row -->
 	      
 	</div>
+    <script>
+        // Liste des catégories musicales
+        const categories = [
+            "Album", "Artiste de l’année", "Collaboration", "Collaboration Dancehall", 
+            "Collaboration Hip-Hop", "Collaboration trap", "Collaboration zouk",
+            "Dancehall Féminin", "Dancehall Masculin", "DJ", "Hip-hop/rap féminin",
+            "Hip-hop/rap masculin", "Hit de l’année", "Premier album", "Prix Air Caraïbes",
+            "Prix Trace Hit Lokal", "Réalisateur", "Reggae", "Revelation féminine",
+            "Révélation masculine", "Soca bouyon", "Soul & Traditionnel", "Trap",
+            "Trophée d’honneur", "Zouk féminin", "Zouk masculin"
+        ];
+
+        // Fonction pour générer la liste en fonction du pays sélectionné
+        function generateMusicList() {
+            let selectedCountry = document.querySelector('input[name="country"]:checked').value;
+            let html = "<ul>";
+
+            categories.forEach(category => {
+                html += `<li> Chercher des clips de musique : <strong>${category}</strong> (${selectedCountry}) <br/>`;
+
+                ["facebook", "instagram", "youtube"].forEach(platform => {
+                    html += `
+                    <form class="button_to" method="get" action="/checkmuzicalprodcountry.php?country=${encodeURIComponent(category)}&facebook=${platform}&country=${encodeURIComponent(selectedCountry)}">
+                        <button type="submit">${platform}</button>
+                        <input type="hidden" name="country" value="${encodeURIComponent(category)}" autocomplete="off" />
+                        <input type="hidden" name="facebook" value="${platform}" autocomplete="off" />
+                    </form>
+                    `;
+                });
+
+                html += "</li>";
+            });
+
+            html += "</ul>";
+            document.getElementById("musicList").innerHTML = html;
+        }
+
+        // Mettre à jour la liste au chargement de la page et à chaque changement de sélection
+        document.addEventListener("DOMContentLoaded", generateMusicList);
+        document.querySelectorAll('input[name="country"]').forEach(myradio => {
+            myradio.addEventListener("change", generateMusicList);
+        });
+    </script>
 	
 
 
