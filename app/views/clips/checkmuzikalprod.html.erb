@@ -37,9 +37,10 @@
 
 <script>
 
-        const musicalprods = JSON.parse(<%= @results.to_json.html_safe %>);
-        console.log(musicalprods);
+
         function renderMusicalprods() {
+            var musicalprods = JSON.parse(<%= @results.to_json.html_safe %>);
+            console.log(musicalprods);
             const musicalprodList = document.getElementById("musicalprod-list");
             musicalprodList.innerHTML = "";
 

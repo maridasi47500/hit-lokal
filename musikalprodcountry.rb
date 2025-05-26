@@ -16,6 +16,16 @@ class MaproductionmusicaleLabel
   SEARCH_URL = "https://www.bing.com/search?q="
   LOCATIONS = [ARGV[0]]
   PLATFORMS = [ARGV[1]]
+  METIERS_FR = ["Executive Producer", "Producer", "Director", "Writter", "Director of production", "Assistant réal",
+           "Light/Electro", "Make Up Artist", "Assistante Make up", "Hair Styler", "Nails", "Stylisme lynnsha",
+           "Stylisme Mannequins", "Danseuses"]
+  random_number = rand(1..METIERS_FR.length)
+
+  random_elements = METIERS_FR.sample(random_number) # Picks 2 random elements
+  my_random_elements = METIERS_FR.sample(2) # Picks 2 random elements
+
+
+
 
   def initialize
 
@@ -32,7 +42,7 @@ class MaproductionmusicaleLabel
 
     LOCATIONS.each do |location|
       PLATFORMS.each do |platform|
-        query = "production music video clip #{location} #{platform}"
+        query = "production music video #{my_random_elements.join(" ")} #{location} #{platform}"
         scrape_pages(query, location)
       end
     end
