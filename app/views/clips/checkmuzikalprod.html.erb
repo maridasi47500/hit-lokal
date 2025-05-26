@@ -36,6 +36,7 @@
 <button id="renderartist" onclick="renderMusicalprods();return false;">render artists</button>
 
 <script>
+
         const musicalprods = JSON.parse(<%= @results.to_json.html_safe %>);
         console.log(musicalprods);
         function renderMusicalprods() {
@@ -64,6 +65,8 @@
                 .catch(error => console.error("Error:", error));
         }
 
+window.onload=function(){
         renderMusicalprods();
+}
     </script>
 

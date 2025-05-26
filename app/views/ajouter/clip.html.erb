@@ -283,7 +283,7 @@ chercher des productions musicales <%=loc%>
                     html += `
                     <form class="button_to" method="get" action="/checkmuzicalprodcountry.php?country=${encodeURIComponent(category)}&facebook=${platform}&country=${encodeURIComponent(selectedCountry)}">
                         <button type="submit">${platform}</button>
-                        <input type="hidden" name="country" value="${encodeURIComponent(category)}" autocomplete="off" />
+                        <input type="hidden" name="country" value="${encodeURIComponent(selectedCountry)} ${encodeURIComponent(category)}" autocomplete="off" />
                         <input type="hidden" name="facebook" value="${platform}" autocomplete="off" />
                     </form>
                     `;
