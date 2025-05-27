@@ -233,6 +233,12 @@ if (window.innerWidth < 992) {
 
 <%locations.each do |loc|%>
 				  <li>
+<%=link_to "chercher production music video #{loc}", "https://www.google.com/search?hs=Pao&q=production+music+video+#{loc}&biw=1920&bih=900&dpr=1&udm=7", target: "_blank"%>
+
+</li>
+<%end%>
+<%locations.each do |loc|%>
+				  <li>
 chercher des productions musicales <%=loc%>
 <%["facebook","instagram","youtube"].each do |hey|%>
 				  <%=button_to "#{hey}", "/checkmuzicalprodcountry.php?country=#{CGI.escape(loc)}&facebook=#{CGI.escape(hey)}", {:method => :get, params: {country: CGI.escape(loc), facebook: CGI.escape(hey)}}%>

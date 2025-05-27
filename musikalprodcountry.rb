@@ -16,13 +16,49 @@ class MaproductionmusicaleLabel
   SEARCH_URL = "https://www.bing.com/search?q="
   LOCATIONS = [ARGV[0]]
   PLATFORMS = [ARGV[1]]
-  METIERS_FR = ["Executive Producer", "Producer", "Director", "Writter", "Director of production", "Assistant réal",
-           "Light/Electro", "Make Up Artist", "Assistante Make up", "Hair Styler", "Nails", "Stylisme lynnsha",
-           "Stylisme Mannequins", "Danseuses"]
-  random_number = rand(1..METIERS_FR.length)
+  METIERS_FR = [
+    "Composé",
+    "Réalisé",
+    "Mixé",
+    "Producteur exécutif", 
+    "Producteur", 
+    "Réalisateur", 
+    "Réalisations",
+    "Auteurs",
+    "Compositeur",
+    "Production",
+    "Editions",
+  "Réalisation Clip ","Réalisation Musicale",
+  "Maquillage",
+  "Coiffure",
+  "Assistante",
+  "Record","Programmation","Guitares","Mix"," Montage"," Etalonnage",
+  "Pianiste / Autrice",
+  "Compositeur.e.s",
+  "Production / Editions",
+    "Scénariste", 
+    "Directeur de production", 
+    "Assistant réalisateur",
+    "Lumière", 
+    "Lumière/Électro", 
+    "Maquilleur", 
+    "Assistant maquillage", 
+    "Coiffeur", 
+    "Ongles", 
 
-  random_elements = METIERS_FR.sample(random_number) # Picks 2 random elements
-  my_random_elements = METIERS_FR.sample(2) # Picks 2 random elements
+    "Enregistrement",
+    "Mixage",
+    "Danseuses",
+    "Auteur Compositeur", "Auteur", "Compositeur", "Mix/Mastering", "Prise de voix", "Production", "Réalisation", "Cadrage", "Étalonnage", "Aide technique"
+
+  ].uniq
+    #"steadycameur",
+    #"Stylisme Mannequins", 
+
+  #random_number = rand(1..METIERS_FR.length)
+
+  #random_elements = METIERS_FR.sample(random_number) # Picks 2 random elements
+  MY_JOBS = METIERS_FR.sample(1) # Picks 2 random elements
 
 
 
@@ -42,7 +78,7 @@ class MaproductionmusicaleLabel
 
     LOCATIONS.each do |location|
       PLATFORMS.each do |platform|
-        query = "production music video #{my_random_elements.join(" ")} #{location} #{platform}"
+        query = "production music video #{location} #{platform} #{MY_JOBS.join(" ")}"
         scrape_pages(query, location)
       end
     end
