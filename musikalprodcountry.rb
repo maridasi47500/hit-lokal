@@ -32,7 +32,7 @@ class MaproductionmusicaleLabel
   "Maquillage",
   "Coiffure",
   "Assistante",
-  "Record","Programmation","Guitares","Mix"," Montage"," Etalonnage",
+  "Record","Programmation","Mix"," Montage"," Etalonnage",
   "Pianiste / Autrice",
   "Compositeur.e.s",
   "Production / Editions",
@@ -52,13 +52,25 @@ class MaproductionmusicaleLabel
     "Auteur Compositeur", "Auteur", "Compositeur", "Mix/Mastering", "Prise de voix", "Production", "Réalisation", "Cadrage", "Étalonnage", "Aide technique"
 
   ].uniq
+  METIERS_FR = [
+    "Réalisateur", "Scénariste", "Créateur de Moodboard", "Scénographe", "Conception Artistique", "Monteur",
+    "Directeur de la Photographie", "Opérateur de Caméra", "Assistant Caméra", "Monteur de Bande-Son", "Coloriste",
+    "Artiste Vocal", "Violoniste", "Arrangeur", "Compositeur", "Producteur Musical", "Ingénieur du Mixage",
+    "Ingénieur du Mastering", "Studio d'Enregistrement", "Responsable Artistique/Commercial", "Responsable Administratif/Financier",
+    "Producteur Exécutif", "Assistant de Production", "Marketeur Digital", "Stratégiste en Médias Numériques",
+    "Gestionnaire des Médias Sociaux", "Chorégraphe", "Danseur", "Conseiller en Image et Presse", "Maquilleur",
+    "Coiffeur", "Styliste Ongulaire", "Directeur de Costume", "Directeur de Caractérisation", "Styliste",
+    "Créateur de Costumes", "Photographe", "Designer de Couverture", "Assistant Photographe", "Vidéo Making-Of",
+    "Producteur", "Gestionnaire Stratégique", "Distributeur"
+  ]
+
     #"steadycameur",
     #"Stylisme Mannequins", 
-
+#"Guitares",
   #random_number = rand(1..METIERS_FR.length)
 
   #random_elements = METIERS_FR.sample(random_number) # Picks 2 random elements
-  MY_JOBS = METIERS_FR.sample(1) # Picks 2 random elements
+  MY_JOBS = METIERS_FR.sample(3) # Picks 2 random elements
 
 
 
@@ -76,9 +88,10 @@ class MaproductionmusicaleLabel
 
   def scrape
 
+
     LOCATIONS.each do |location|
       PLATFORMS.each do |platform|
-        query = "production music video #{location} #{platform} #{MY_JOBS.join(" ")}"
+        query = "production music video #{location} #{platform} #{MY_JOBS.join(" ").split(" ").map {|z| "inbody:#{z}"}.join(" ")}"
         scrape_pages(query, location)
       end
     end
