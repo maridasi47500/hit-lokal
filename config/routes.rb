@@ -36,6 +36,8 @@ Rails.application.routes.draw do
   get "/my_trending_videos.php", to: "clips#my_trending_videos"
 
   get "/top/videos/:title.html", to: "clips#showclip", as: :linktovideo
+  get "/my_favorite_videos.php", to: "clips#my_fav_videos"
+  get "/my_fav_jobs.php", to: "clips#my_fav_jos"
   scope(:path_names => { :new => "nouveau", :edit => "editer" }) do
   resources :news, :path => "actualites"
 end

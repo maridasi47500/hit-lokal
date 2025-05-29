@@ -38,6 +38,14 @@ class ClipsController < ApplicationController
     @results=JSON.generate(JSON.parse(a))
     p @results
   end
+  def my_fav_jobs
+    @results=`python3 findvideosjobs.py "#{params[:country]}" "#{params[:jobs]}"`
+    p @results
+  end
+  def my_fav_videos
+    @results=`python3 findvideos.py "#{params[:country]}"`
+    p @results
+  end
   def checkartist
     @results=JSON.generate(JSON.parse(`ruby labelwikipediabing.rb`))
     p @results

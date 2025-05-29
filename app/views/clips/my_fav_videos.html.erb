@@ -1,0 +1,84 @@
+<%=simple_format(@results.html_safe)%>
+<%jobs = [
+  "Composé",
+  "Réalisé",
+  "Mixé",
+  "Producteur exécutif",
+  "Producteur",
+  "Réalisateur",
+  "Réalisations",
+  "Auteurs",
+  "Compositeur",
+  "Production",
+  "Editions",
+"Réalisation Clip ","Réalisation Musicale",
+"Maquillage",
+"Coiffure",
+"Assistante",
+"Record","Programmation","Mix"," Montage"," Etalonnage",
+"Pianiste / Autrice",
+"Compositeur.e.s",
+"Production / Editions",
+  "Scénariste",
+  "Directeur de production",
+  "Assistant réalisateur",
+  "Lumière",
+  "Lumière/Électro",
+  "Maquilleur",
+  "Assistant maquillage",
+  "Coiffeur",
+  "Ongles",
+  "Enregistrement",
+  "Mixage",
+  "Danseuses",
+  "Auteur Compositeur", "Auteur", "Compositeur", "Mix/Mastering", "Prise de voix", "Production", "Réalisation", "Cadrage", "Étalonnage", "Aide technique",
+  "Réalisateur", "Scénariste", "Créateur de Moodboard", "Scénographe", "Conception Artistique", "Monteur",
+  "Directeur de la Photographie", "Opérateur de Caméra", "Assistant Caméra", "Monteur de Bande-Son", "Coloriste",
+  "Artiste Vocal", "Violoniste", "Arrangeur", "Compositeur", "Producteur Musical", "Ingénieur du Mixage",
+  "Ingénieur du Mastering", "Studio d'Enregistrement", "Responsable Artistique Commercial", "Responsable Administratif Financier",
+  "Producteur Exécutif", "Assistant de Production", "Marketeur Digital", "Stratégiste en Médias Numériques",
+  "Gestionnaire des Médias Sociaux", "Chorégraphe", "Danseur", "Conseiller en Image et Presse", "Maquilleur",
+  "Coiffeur", "Styliste Ongulaire", "Directeur de Costume", "Directeur de Caractérisation", "Styliste",
+  "Créateur de Costumes", "Photographe", "Designer de Couverture", "Assistant Photographe", "Vidéo Making-Of",
+  "Producteur", "Gestionnaire Stratégique", "Distributeur"
+]
+%>
+<%jobs.each do |x|%>
+<%=label_tag x, for: x.camelize do%>
+<%=x%>
+<%=check_box_tag "job", x, false, id: x.camelize%>
+<%end%>
+<%end%>
+<%locations = [
+"Martinique",
+"Guadeloupe",
+"Guyane",
+"Mayotte",
+"La Réunion",
+"Saint-Martin",
+"Saint-Barthélemy",
+"Nouvelle-Calédonie",
+"Polynésie française",
+"Wallis-et-Futuna",
+"Haiti",
+"Seychelles",
+"Maurice",
+"Madagascar",
+"Comores"
+]
+%>
+
+<h2>Choisissez un pays :</h2>
+<%locations.each_with_index do |loc,i|%>
+<label><input type="radio" name="country" value="<%=loc%>" <%=i==0 ? "checked" : ""%>> <%=loc%></label>
+<%end%>
+
+<button type="button">chercher une video</button>
+<script>
+function hey(){
+var x =$("[name=job]:checked").select().toArray().map(x=>x.value).join(" ")
+var y =$("[name=country]:checked").select().toArray().map(x=>x.value).join(" ")
+window.open("/my_fav_jobs?country="+y+"&jobs="+x)
+
+}
+</script>

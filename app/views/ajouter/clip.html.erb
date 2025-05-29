@@ -1,46 +1,46 @@
 <%=content_for :css do%>
-    <style>
-  
-  .add-clip {
-        margin: 20px;
-          }
-    
-    .add-clip p {
-          text-align : left;
-            }
-      .add-clip ul li {
-            text-align : left;
-                font-size: 22px;
-                    margin-bottom: 15px;
-                      }
-        
-        .add-clip .form-group {
-                text-align: left;
-                    font-size: 22px;
-                      }
-          
-          .add-clip .text-muted {
-                color: #1F3356!important;
-                    font-size: 15px;
-                      }
-            
-            .add-clip h2 {
-                  color: #1F3356!important;
-                    }
-              
-            .POC:before {
-                  content: attr(data-placeholder);
-                      position: absolute;
-                          margin-top: 12px;
-                              color: #000;
-                                  width: 375px;
-            }
+<style>
 
-            .POC__input-field {
-                padding-left: 375px;
-                  
-            }
-              </style>
+.add-clip {
+margin: 20px;
+  }
+
+.add-clip p {
+  text-align : left;
+    }
+.add-clip ul li {
+    text-align : left;
+	font-size: 22px;
+	    margin-bottom: 15px;
+	      }
+
+.add-clip .form-group {
+	text-align: left;
+	    font-size: 22px;
+	      }
+  
+  .add-clip .text-muted {
+	color: #1F3356!important;
+	    font-size: 15px;
+	      }
+    
+    .add-clip h2 {
+	  color: #1F3356!important;
+	    }
+      
+    .POC:before {
+	  content: attr(data-placeholder);
+	      position: absolute;
+		  margin-top: 12px;
+		      color: #000;
+			  width: 375px;
+    }
+
+    .POC__input-field {
+	padding-left: 375px;
+	  
+    }
+      </style>
 <%end%>
 <body>
 
@@ -52,45 +52,45 @@ document.addEventListener("DOMContentLoaded", function(){
 // make it as accordion for smaller screens
 if (window.innerWidth < 992) {
 
-  // close all inner dropdowns when parent is closed
-  document.querySelectorAll('.navbar .dropdown').forEach(function(everydropdown){
-    everydropdown.addEventListener('hidden.bs.dropdown', function () {
-      // after dropdown is hidden, then find all submenus
-        this.querySelectorAll('.submenu').forEach(function(everysubmenu){
-          // hide every submenu as well
-          everysubmenu.style.display = 'none';
-        });
-    })
-  });
+// close all inner dropdowns when parent is closed
+document.querySelectorAll('.navbar .dropdown').forEach(function(everydropdown){
+everydropdown.addEventListener('hidden.bs.dropdown', function () {
+// after dropdown is hidden, then find all submenus
+this.querySelectorAll('.submenu').forEach(function(everysubmenu){
+  // hide every submenu as well
+  everysubmenu.style.display = 'none';
+});
+})
+});
 
-  document.querySelectorAll('.dropdown-menu a').forEach(function(element){
-    element.addEventListener('click', function (e) {
-        let nextEl = this.nextElementSibling;
-        if(nextEl && nextEl.classList.contains('submenu')) {
-          // prevent opening link if link needs to open dropdown
-          e.preventDefault();
-          if(nextEl.style.display == 'block'){
-            nextEl.style.display = 'none';
-          } else {
-            nextEl.style.display = 'block';
-          }
+document.querySelectorAll('.dropdown-menu a').forEach(function(element){
+element.addEventListener('click', function (e) {
+let nextEl = this.nextElementSibling;
+if(nextEl && nextEl.classList.contains('submenu')) {
+  // prevent opening link if link needs to open dropdown
+  e.preventDefault();
+  if(nextEl.style.display == 'block'){
+    nextEl.style.display = 'none';
+  } else {
+    nextEl.style.display = 'block';
+  }
 
-        }
-    });
-  })
+}
+});
+})
 }
 // end if innerWidth
 });
 </script>
 
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-47717247-10', 'auto');
-  ga('send', 'pageview');
+ga('create', 'UA-47717247-10', 'auto');
+ga('send', 'pageview');
 
 </script>
 
@@ -100,214 +100,221 @@ if (window.innerWidth < 992) {
 <!-- --- --- --- --- -- -->	
 <!-- --- --- --- --- -- -->	
 
-	
-	<div id="artistes-0" class="add-clip col-lg-10 offset-lg-1 position-relative">	
-	            <div class="row">
-                <div class="col-lg-6 offset-lg-2" style="z-index:2">                    
-                    <h2>Ajouter votre clip sur Hit Lokal</h2>
-					<p>Hit Lokal vous permet de publier vous même vos clips sur le site. Pour cela il suffit de remplir ce formulaire. Aucune inscription n'est faite.</p>
-                                <hr>
-            
-                        
-            
-                                
-                    <form action="/ajouter.php" method="post">
+
+<div id="artistes-0" class="add-clip col-lg-10 offset-lg-1 position-relative">	
+	    <div class="row">
+	<div class="col-lg-6 offset-lg-2" style="z-index:2">                    
+	    <h2>Ajouter votre clip sur Hit Lokal</h2>
+				<p>Hit Lokal vous permet de publier vous même vos clips sur le site. Pour cela il suffit de remplir ce formulaire. Aucune inscription n'est faite.</p>
+			<hr>
+    
+		
+    
+			
+	    <form action="/ajouter.php" method="post">
 <input type="hidden" name="formulaire" value="bonjour" />
 <input type="hidden" name="user_id" value="<%=current_user.try(:id)%>" />
-					
-					    		<div class="form-group">
-								<label>Catégorie</label>
-								<select name="fcat" id="fcat" class="form-select" aria-label="Default select example">
-								  <option value="0">Choisir une catégorie dans la liste</option>				
+				
+						<div class="form-group">
+							<label>Catégorie</label>
+							<select name="fcat" id="fcat" class="form-select" aria-label="Default select example">
+							  <option value="0">Choisir une catégorie dans la liste</option>				
 
 <%Cat.all.each do |cat|%>
-								                                   <option value="<%=cat.id%>" class="btn-lg-52"> &nbsp;<%=cat.name%>&nbsp;</a>
-            
+											   <option value="<%=cat.id%>" class="btn-lg-52"> &nbsp;<%=cat.name%>&nbsp;</a>
+    
 <%end%>
-            
-					               
-								</select>
-							</div>
-                        <div class="form-group">
-						<label>modifier titre (artiste - title song) </label>
-						      <div class="POC" data-placeholder="titre">
-                            <input type="text"  name="titrevideo" id="titrevideo" class="form-control-input POC__input-field" value="<%=params[:titre]%>" placeholder="titre chanson" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-						<label>Lien youtube</label>
-						      <div class="POC" data-placeholder="https://www.youtube.com/watch?v=">
-                            <input type="text"  name="ytube" id="ytube" class="form-control-input POC__input-field" value="<%=params[:lienvid]%>" placeholder="gfKVbQb0OLQ" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-						<label>Votre email</label>
-                            <input type="email"  name="femail" id="femail" class="form-control-input" placeholder="votre adresse email" required>
-							 <small class="text-muted">Saisir une adresse email pour nous permettre de vous informer de la mise en ligne du clip. Compter 48h pour la mise en ligne.</small>
-                        </div>
-						  <div class="form-group">
-							  <label for="freg">Région</label>
-							  <select name="freg" id="freg" class="form-control input-lg">
-								  <option value="0">Choisir une région dans la liste</option>
-								  	                                        <option value="7" class="btn-lg-52"> &nbsp;Afrique &nbsp;</a>
-                    
-        					                                                <option value="8" class="btn-lg-52"> &nbsp;Autres &nbsp;</a>
-                    
-        					                                                <option value="2" class="btn-lg-52"> &nbsp;Guadeloupe &nbsp;</a>
-                    
-        					                                                <option value="4" class="btn-lg-52"> &nbsp;Guyane &nbsp;</a>
-                    
-        					                                                <option value="5" class="btn-lg-52"> &nbsp;Haïti &nbsp;</a>
-                    
-        					                                                <option value="1" class="btn-lg-52"> &nbsp;Martinique &nbsp;</a>
-                    
-        					                                                <option value="3" class="btn-lg-52"> &nbsp;Réunion &nbsp;</a>
-                    
-        					                                                <option value="6" class="btn-lg-52"> &nbsp;USA &nbsp;</a>
-                    
-        					        								</select>
-                            </div>
-						<div class="form-group">
-						
-						<div class="form-check form-switch d-inline-block me-1">
-							<input type="checkbox" class="form-check-input" id="site_state" style="cursor: pointer;" required />        
-					Je certifie être une personne de l'équipe de production ou en lien avec la réalisation de cette vidéo.</div>
+    
+					       
+							</select>
 						</div>
-                        <div class="form-group">
-                          
-                            <input id="submit" name="submit" type="submit" value="Enregistrer" class="btn-solid-reg"/>
-                        </div>
-                    </form>
-                            </div> <!-- end of col -->
-				
-				 <div class="col-lg-3 offset-lg-1 compteur" style="z-index:2">  
-				  <h2>Les règles d'inclusion</h2>
-				  <ul>
-				  <li>Un lien Youtube</li>
-				  <li>
+		<div class="form-group">
+					<label>modifier titre (artiste - title song) </label>
+					      <div class="POC" data-placeholder="titre">
+		    <input type="text"  name="titrevideo" id="titrevideo" class="form-control-input POC__input-field" value="<%=params[:titre]%>" placeholder="titre chanson" required>
+		    </div>
+		</div>
+		<div class="form-group">
+					<label>Lien youtube</label>
+					      <div class="POC" data-placeholder="https://www.youtube.com/watch?v=">
+		    <input type="text"  name="ytube" id="ytube" class="form-control-input POC__input-field" value="<%=params[:lienvid]%>" placeholder="gfKVbQb0OLQ" required>
+		    </div>
+		</div>
+		<div class="form-group">
+					<label>Votre email</label>
+		    <input type="email"  name="femail" id="femail" class="form-control-input" placeholder="votre adresse email" required>
+						 <small class="text-muted">Saisir une adresse email pour nous permettre de vous informer de la mise en ligne du clip. Compter 48h pour la mise en ligne.</small>
+		</div>
+					  <div class="form-group">
+						  <label for="freg">Région</label>
+						  <select name="freg" id="freg" class="form-control input-lg">
+							  <option value="0">Choisir une région dans la liste</option>
+													<option value="7" class="btn-lg-52"> &nbsp;Afrique &nbsp;</a>
+	    
+											<option value="8" class="btn-lg-52"> &nbsp;Autres &nbsp;</a>
+	    
+											<option value="2" class="btn-lg-52"> &nbsp;Guadeloupe &nbsp;</a>
+	    
+											<option value="4" class="btn-lg-52"> &nbsp;Guyane &nbsp;</a>
+	    
+											<option value="5" class="btn-lg-52"> &nbsp;Haïti &nbsp;</a>
+	    
+											<option value="1" class="btn-lg-52"> &nbsp;Martinique &nbsp;</a>
+	    
+											<option value="3" class="btn-lg-52"> &nbsp;Réunion &nbsp;</a>
+	    
+											<option value="6" class="btn-lg-52"> &nbsp;USA &nbsp;</a>
+	    
+														</select>
+		    </div>
+					<div class="form-group">
+					
+					<div class="form-check form-switch d-inline-block me-1">
+						<input type="checkbox" class="form-check-input" id="site_state" style="cursor: pointer;" required />        
+				Je certifie être une personne de l'équipe de production ou en lien avec la réalisation de cette vidéo.</div>
+					</div>
+		<div class="form-group">
+		  
+		    <input id="submit" name="submit" type="submit" value="Enregistrer" class="btn-solid-reg"/>
+		</div>
+	    </form>
+		    </div> <!-- end of col -->
+			
+			 <div class="col-lg-3 offset-lg-1 compteur" style="z-index:2">  
+			  <h2>Les règles d'inclusion</h2>
+			  <ul>
+			  <li>Un lien Youtube</li>
+			  <li>
 <%= form_tag '/lien.php', method: :get do %>
-  <%= label_tag :artist, 'Artist' %>
-  <%= text_field_tag :artist %>
-  
-  <%= label_tag :title, 'Title' %>
-  <%= text_field_tag :title %>
+<%= label_tag :artist, 'Artist' %>
+<%= text_field_tag :artist %>
 
-  <%= submit_tag 'Submit' %>
+<%= label_tag :title, 'Title' %>
+<%= text_field_tag :title %>
+
+<%= submit_tag 'Submit' %>
 <% end %>
 
 
 </li>
-				  <li>
+			  <li>
 <%= form_tag '/autrelien.php', method: :get do %>
-  <%= label_tag :channel1, 'channel video https://www.youtube.com/watch?v=' %>
-  <%= text_field_tag :channel1 %>
-  
+<%= label_tag :channel1, 'channel video https://www.youtube.com/watch?v=' %>
+<%= text_field_tag :channel1 %>
 
-  <%= submit_tag 'Submit' %>
+
+<%= submit_tag 'Submit' %>
 <% end %>
 
 
 </li>
-				  <li><%=button_to "my trending videos les plus populaire en guyane, martinique, guadeloupe","/my_trending_videos.php", {:method => :get}%></li>
-				  <li><%=button_to "classement guyane, martinique, guadeloupe",'/autrelien1.php', {:method => :get}%></li>
-				  <li><%=button_to "chercher des artistes",'/checkartist.php', {:method => :get}%></li>
-				  <li><%=button_to "chercher des productions musicales",'/checkmuzicalprod.php', {:method => :get}%></li>
-  <%locations = [
-  "Martinique",
-  "Guadeloupe",
-  "Guyane",
-  "Mayotte",
-  "La Réunion",
-  "Saint-Martin",
-  "Saint-Barthélemy",
-  "Nouvelle-Calédonie",
-  "Polynésie française",
-  "Wallis-et-Futuna",
-  "Haiti",
-  "Seychelles",
-  "Maurice",
-  "Madagascar",
-  "Comores"
+
+			  <li><%=button_to "my trending videos les plus populaire en guyane, martinique, guadeloupe","/my_trending_videos.php", {:method => :get}%></li>
+			  <li><%=button_to "classement guyane, martinique, guadeloupe",'/autrelien1.php', {:method => :get}%></li>
+			  <li><%=button_to "chercher des artistes",'/checkartist.php', {:method => :get}%></li>
+			  <li><%=button_to "chercher des productions musicales",'/checkmuzicalprod.php', {:method => :get}%></li>
+<%locations = [
+"Martinique",
+"Guadeloupe",
+"Guyane",
+"Mayotte",
+"La Réunion",
+"Saint-Martin",
+"Saint-Barthélemy",
+"Nouvelle-Calédonie",
+"Polynésie française",
+"Wallis-et-Futuna",
+"Haiti",
+"Seychelles",
+"Maurice",
+"Madagascar",
+"Comores"
 ]
 %>
+<%locations.each do |loc|%>
+			  <li>
+<%=link_to "ajouter production music video #{loc}", "/my_favorite_videos.php?country=#{loc}", target: "_blank"%>
+
+</li>
+<% end %>
 
 <%locations.each do |loc|%>
-				  <li>
-<%=link_to "chercher production music video #{loc}", "https://www.google.com/search?hs=Pao&q=production+music+video+#{loc}&biw=1920&bih=900&dpr=1&udm=7", target: "_blank"%>
+			  <li>
+<%=link_to "lien music video #{loc}", "https://www.google.com/search?hs=Pao&q=production+music+video+#{loc}&biw=1920&bih=900&dpr=1&udm=7", target: "_blank"%>
 
 </li>
 <%end%>
 <%locations.each do |loc|%>
-				  <li>
+			  <li>
 chercher des productions musicales <%=loc%>
 <%["facebook","instagram","youtube"].each do |hey|%>
-				  <%=button_to "#{hey}", "/checkmuzicalprodcountry.php?country=#{CGI.escape(loc)}&facebook=#{CGI.escape(hey)}", {:method => :get, params: {country: CGI.escape(loc), facebook: CGI.escape(hey)}}%>
+			  <%=button_to "#{hey}", "/checkmuzicalprodcountry.php?country=#{CGI.escape(loc)}&facebook=#{CGI.escape(hey)}", {:method => :get, params: {country: CGI.escape(loc), facebook: CGI.escape(hey)}}%>
 <%end%>
 </li>
 <%end%>
 <li>
-    <h2>Choisissez un pays :</h2>
+<h2>Choisissez un pays :</h2>
 <%locations.each_with_index do |loc,i|%>
-    <label><input type="radio" name="country" value="<%=loc%>" <%=i==0 ? "checked" : ""%>> <%=loc%></label>
+<label><input type="radio" name="country" value="<%=loc%>" <%=i==0 ? "checked" : ""%>> <%=loc%></label>
 <%end%>
 
-    <h2>Liste des clips musicaux :</h2>
-    <div id="musicList"></div>
+<h2>Liste des clips musicaux :</h2>
+<div id="musicList"></div>
 </li>
 
-				  <li>Publié il y a maximum 31 jours</li>
-				  <li>Obligatoirement une vidéo</li>
-				  <li>Obligatoirement de la musique</li>
-				  <li>Etre un artiste d'outre-mer</li>
-				  </ul>
-				  
-				  </div>  
-               </div> <!-- end of row -->
-	      
-	</div>
-    <script>
-        // Liste des catégories musicales
-        const categories = [
-            "Album", "Artiste de l’année", "Collaboration", "Collaboration Dancehall", 
-            "Collaboration Hip-Hop", "Collaboration trap", "Collaboration zouk",
-            "Dancehall Féminin", "Dancehall Masculin", "DJ", "Hip-hop/rap féminin",
-            "Hip-hop/rap masculin", "Hit de l’année", "Premier album", "Prix Air Caraïbes",
-            "Prix Trace Hit Lokal", "Réalisateur", "Reggae", "Revelation féminine",
-            "Révélation masculine", "Soca bouyon", "Soul & Traditionnel", "Trap",
-            "Trophée d’honneur", "Zouk féminin", "Zouk masculin"
-        ];
+			  <li>Publié il y a maximum 31 jours</li>
+			  <li>Obligatoirement une vidéo</li>
+			  <li>Obligatoirement de la musique</li>
+			  <li>Etre un artiste d'outre-mer</li>
+			  </ul>
+			  
+			  </div>  
+       </div> <!-- end of row -->
+      
+</div>
+<script>
+// Liste des catégories musicales
+const categories = [
+    "Album", "Artiste de l’année", "Collaboration", "Collaboration Dancehall", 
+    "Collaboration Hip-Hop", "Collaboration trap", "Collaboration zouk",
+    "Dancehall Féminin", "Dancehall Masculin", "DJ", "Hip-hop/rap féminin",
+    "Hip-hop/rap masculin", "Hit de l’année", "Premier album", "Prix Air Caraïbes",
+    "Prix Trace Hit Lokal", "Réalisateur", "Reggae", "Revelation féminine",
+    "Révélation masculine", "Soca bouyon", "Soul & Traditionnel", "Trap",
+    "Trophée d’honneur", "Zouk féminin", "Zouk masculin"
+];
 
-        // Fonction pour générer la liste en fonction du pays sélectionné
-        function generateMusicList() {
-            let selectedCountry = document.querySelector('input[name="country"]:checked').value;
-            let html = "<ul>";
+// Fonction pour générer la liste en fonction du pays sélectionné
+function generateMusicList() {
+    let selectedCountry = document.querySelector('input[name="country"]:checked').value;
+    let html = "<ul>";
 
-            categories.forEach(category => {
-                html += `<li> Chercher des clips de musique : <strong>${category}</strong> (${selectedCountry}) <br/>`;
+    categories.forEach(category => {
+	html += `<li> Chercher des clips de musique : <strong>${category}</strong> (${selectedCountry}) <br/>`;
 
-                ["facebook", "instagram", "youtube"].forEach(platform => {
-                    html += `
-                    <form class="button_to" method="get" action="/checkmuzicalprodcountry.php?country=${encodeURIComponent(category)}&facebook=${platform}&country=${encodeURIComponent(selectedCountry)}">
-                        <button type="submit">${platform}</button>
-                        <input type="hidden" name="country" value="${encodeURIComponent(selectedCountry)} ${encodeURIComponent(category)}" autocomplete="off" />
-                        <input type="hidden" name="facebook" value="${platform}" autocomplete="off" />
-                    </form>
-                    `;
-                });
+	["facebook", "instagram", "youtube"].forEach(platform => {
+	    html += `
+	    <form class="button_to" method="get" action="/checkmuzicalprodcountry.php?country=${encodeURIComponent(category)}&facebook=${platform}&country=${encodeURIComponent(selectedCountry)}">
+		<button type="submit">${platform}</button>
+		<input type="hidden" name="country" value="${encodeURIComponent(selectedCountry)} ${encodeURIComponent(category)}" autocomplete="off" />
+		<input type="hidden" name="facebook" value="${platform}" autocomplete="off" />
+	    </form>
+	    `;
+	});
 
-                html += "</li>";
-            });
+	html += "</li>";
+    });
 
-            html += "</ul>";
-            document.getElementById("musicList").innerHTML = html;
-        }
+    html += "</ul>";
+    document.getElementById("musicList").innerHTML = html;
+}
 
-        // Mettre à jour la liste au chargement de la page et à chaque changement de sélection
-        document.addEventListener("DOMContentLoaded", generateMusicList);
-        document.querySelectorAll('input[name="country"]').forEach(myradio => {
-            myradio.addEventListener("change", generateMusicList);
-        });
-    </script>
-	
+// Mettre à jour la liste au chargement de la page et à chaque changement de sélection
+document.addEventListener("DOMContentLoaded", generateMusicList);
+document.querySelectorAll('input[name="country"]').forEach(myradio => {
+    myradio.addEventListener("change", generateMusicList);
+});
+</script>
+
 
 
