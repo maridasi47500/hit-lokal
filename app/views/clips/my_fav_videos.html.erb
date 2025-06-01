@@ -1,10 +1,36 @@
 <%=simple_format(@results.html_safe)%>
 <%jobs = [
+"Dancehall", "Hip-Hop", "Trap", "Zouk", "Reggae", "Soca", "Bouyon", "Soul & Traditionnel",
+
+"auteur", "interprète", "production", "compo", "mix", "réalisé", "DA", "figuration", "remerciement",
+
+"mastering",
+"réalisation", "acteurs", "les lovelies", "auteur compositeur", "chef op",
+        "cadreuse", "montage", "effets spéciaux", "déco", "sound design", "prod",
+        "assistant réalisateur", "assistant mise en scène", "assistants opérateurs",
+        "chef électro", "electros", "machinos", "photos", "remerciements",
+        "musique générique fin",
+
+
+
+
+  "Réalisation",
+"Rec","Master",
+  "Production",
+  "Chef opérateur",
+  "1er Assistant réalisateur",
+  "2nd Assistant réalisateur",
+  "Montage & Étalonnage",
+  "Post-production",
+  "1er Assistant Caméra",
+  "2nd Assistant Caméra",
   "Composé",
   "Réalisé",
   "Mixé",
   "Producteur exécutif",
   "Producteur",
+  "Production",
+  "records",
   "Réalisateur",
   "Réalisations",
   "Auteurs",
@@ -40,15 +66,63 @@
   "Gestionnaire des Médias Sociaux", "Chorégraphe", "Danseur", "Conseiller en Image et Presse", "Maquilleur",
   "Coiffeur", "Styliste Ongulaire", "Directeur de Costume", "Directeur de Caractérisation", "Styliste",
   "Créateur de Costumes", "Photographe", "Designer de Couverture", "Assistant Photographe", "Vidéo Making-Of",
-  "Producteur", "Gestionnaire Stratégique", "Distributeur"
-]
+  "Producteur", "Gestionnaire Stratégique", "Distributeur",
+  "Réalisé",
+  "Producteur exécutif",
+  "Directeur de production",
+  "Chef électricien & OPV",
+  "Maquilleuse",
+  "Stylisme",
+  "Créatrice",
+  "Assistantes production"
+
+].map(&:downcase)
 %>
 <%jobs.each do |x|%>
 <%=label_tag x, for: x.camelize do%>
-<%=x%>
+
 <%=check_box_tag "job", x, false, id: x.camelize%>
+<%=x%>
 <%end%>
 <%end%>
+<%video_credits = [
+  "Director",
+  "Creative Director",
+  "Producer",
+  "DP, editor, colorist",
+  "Stylist",
+  "Production company",
+  "Production coordinator",
+  "Focus Puller",
+  "2nd Camera assistant",
+  "Camera PA",
+  "Make up artist",
+  "Hair stylist",
+  "Dancer Makeup",
+  "Styling assistants",
+  "Gaffer",
+  "Grips",
+  "Production assistants",
+  "BTS photographer",
+  "Dancers",
+  "Shensheea glam",
+  "Hair",
+  "Make Up",
+  "Styling",
+"Title", "Artist", "Genre", "Produced by", "Mixed & Mastered by", "Visuals",
+
+  "Follow MOLIY on"
+]
+%>
+<p>jobs english</p>
+<%video_credits.each do |x|%>
+<%=label_tag x, for: x.camelize do%>
+
+<%=check_box_tag "job", x, false, id: x.camelize%>
+<%=x%>
+<%end%>
+<%end%>
+
 <%locations = [
 "Martinique",
 "Guadeloupe",
@@ -73,7 +147,7 @@
 <label><input type="radio" name="country" value="<%=loc%>" <%=i==0 ? "checked" : ""%>> <%=loc%></label>
 <%end%>
 
-<button type="button">chercher une video</button>
+<button onclick="hey()" type="button">chercher une video</button>
 <script>
 function hey(){
 var x =$("[name=job]:checked").select().toArray().map(x=>x.value).join(" ")

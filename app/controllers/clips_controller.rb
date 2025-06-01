@@ -39,11 +39,11 @@ class ClipsController < ApplicationController
     p @results
   end
   def my_fav_jobs
-    @results=`python3 findvideosjobs.py "#{params[:country]}" "#{params[:jobs]}"`
+    @results=`python3 findvideosjobs.py "#{params[:country].downcase}" "#{params[:jobs].downcase}"`
     p @results
   end
   def my_fav_videos
-    @results=`python3 findvideos.py "#{params[:country]}"`
+    @results=`python3 findvideos.py "#{params[:country].downcase}"`
     p @results
   end
   def checkartist

@@ -11,9 +11,11 @@ if len(sys.argv) > 2:  # Ensures an argument is provided
     # Select 2 random elements
     # Convert them into "description: <value>" format and join them into a single string
     result_string = " ".join([f"description:{h}" for h in selected_metiers])
+    mylocation = " ".join([f"description:{h}" for h in location.replace("-"," ").split(" ")])
     
 
-    query = f"{location} production music video {result_string}"
+    query = f"{mylocation} description:prod description:music description:video {result_string}"
+    query = f"{mylocation} description:prod description:music description:video {result_string}"
     print(query)
     results = json.loads(YoutubeSearch(query, max_results=1000).to_json())
     #print(results["videos"])
