@@ -1,6 +1,7 @@
 <%=simple_format(@results.html_safe)%>
 <%jobs = [
-"Dancehall", "Hip-Hop", "Trap", "Zouk", "Reggae", "Soca", "Bouyon", "Soul & Traditionnel",
+"Dancehall", "Hip-Hop", "Trap", "Zouk", "Reggae", "Soca", "Bouyon", "Soul","Traditionnel","Rap","Pop","Compas","RnB",
+
 
 "auteur", "interprète", "production", "compo", "mix", "réalisé", "DA", "figuration", "remerciement",
 
@@ -57,6 +58,7 @@
   "Enregistrement",
   "Mixage",
   "Danseuses",
+  "arrangement",
   "Auteur Compositeur", "Auteur", "Compositeur", "Mix/Mastering", "Prise de voix", "Production", "Réalisation", "Cadrage", "Étalonnage", "Aide technique",
   "Réalisateur", "Scénariste", "Créateur de Moodboard", "Scénographe", "Conception Artistique", "Monteur",
   "Directeur de la Photographie", "Opérateur de Caméra", "Assistant Caméra", "Monteur de Bande-Son", "Coloriste",
@@ -123,7 +125,7 @@
 <%end%>
 <%end%>
 
-<%locations = [
+<%locations = ["",
 "Martinique",
 "Guadeloupe",
 "Guyane",
@@ -143,9 +145,12 @@
 %>
 
 <h2>Choisissez un pays :</h2>
-<%locations.each_with_index do |loc,i|%>
-<label><input type="radio" name="country" value="<%=loc%>" <%=i==0 ? "checked" : ""%>> <%=loc%></label>
-<%end%>
+<%= collection_radio_buttons("",:country, locations, :to_s, :to_s) do |b| %>
+  <label>
+    <%= b.radio_button %> <%= b.text == "" ? "aucun pays" : b.text %>
+  </label>
+<% end %>
+
 
 <button onclick="hey()" type="button">chercher une video</button>
 <script>

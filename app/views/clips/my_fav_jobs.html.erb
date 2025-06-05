@@ -1,6 +1,8 @@
 <%=simple_format(@results.html_safe)%>
 <%jobs = [
-"Dancehall", "Hip-Hop", "Trap", "Zouk", "Reggae", "Soca", "Bouyon", "Soul & Traditionnel",
+"Dancehall", "Hip-Hop", "Trap", "Zouk", "Reggae", "Soca", "Bouyon", "Soul","Traditionnel","Rap","Pop","Compas","RnB",
+  "arrangement",
+
 
 "auteur", "interprète", "production", "compo", "mix", "réalisé", "DA", "figuration", "remerciement",
 "Rec","Master",
@@ -121,7 +123,8 @@
 <%end%>
 
 
-<%locations = [
+<%locations = ["",
+
 "Martinique",
 "Guadeloupe",
 "Guyane",
@@ -142,7 +145,7 @@
 
 <h2>Choisissez un pays :</h2>
 <%locations.each_with_index do |loc,i|%>
-<label><input type="radio" name="country" value="<%=loc%>" <%=i==0 ? "checked" : ""%>> <%=loc%></label>
+<label><input type="radio" name="country" value="<%=loc%>" <%=i==0 ? "checked" : ""%>> <%=loc == "" ? "aucun pays" : loc%></label>
 <%end%>
 
 <button onclick="hey()" type="button">chercher une video</button>

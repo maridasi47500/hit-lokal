@@ -22,6 +22,7 @@ doc.css('.item').each do |item|
   title = item.css('.titre').text.strip
   artist = item.css('.artiste').text.strip
 
-  puts "#{rank}: #{title} by #{artist}"
+  puts "<p>#{rank}: #{title} by #{artist}</p>"
+  puts "<p><a href=\"lien.php?title=#{title}&artist=#{artist}\">chercher #{title} by #{artist}</a></p>"
 end
 

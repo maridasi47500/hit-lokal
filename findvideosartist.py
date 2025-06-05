@@ -6,19 +6,13 @@ import json
 SEARCH_URL = "https://www.bing.com/search?q="
 
 if len(sys.argv) > 2:  # Ensures an argument is provided
-    location = sys.argv[1]  # Gets the first command-line argument
-    selected_metiers = sys.argv[2].split(" ")  # Gets the first command-line argument
+    arist = sys.argv[1]  # Gets the first command-line argument
+    title = sys.argv[2]  # Gets the first command-line argument
     # Select 2 random elements
     # Convert them into "description: <value>" format and join them into a single string
-    result_string = " ".join([f"description:{h}" for h in selected_metiers])
-    if location == "":
-      mylocation = ""
-    else:
-      mylocation = " ".join([f"description:{h}" for h in location.replace("-"," ").split(" ")])
+    result_string=artist+" "+title
     
 
-    query = f"{mylocation} description:prod description:music description:video {result_string}"
-    query = f"{mylocation} description:prod description:music description:video {result_string}"
     query = f"{mylocation} {result_string}, -channel, -playlist, -movie, -show"
     print(query)
     results = json.loads(YoutubeSearch(query, max_results=1000).to_json())

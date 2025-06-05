@@ -1,1 +1,17 @@
+ <li>Un lien Youtube</li>
+                          <li>
+<%= form_tag '/lien.php', method: :get do %>
+<%= label_tag :artist, 'Artist' %>
+<%= text_field_tag :artist, params[:artist] %>
+
+<%= label_tag :title, 'Title' %>
+<%= text_field_tag :title, params[:title] %>
+
+<%= submit_tag 'Submit' %>
+<% end %>
+
+
+</li>
+
+
 <%=simple_format(@results).html_safe%>

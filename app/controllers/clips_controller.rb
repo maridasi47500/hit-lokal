@@ -16,6 +16,8 @@ class ClipsController < ApplicationController
   end
  def lien
     @results=`ruby searchlinkbing.rb "#{params[:artist]}" "#{params[:title]}"`
+    @results+=`python3 findvideosartist.py "#{params[:artist].downcase}" "#{params[:title].downcase}"`
+
  end
 
 
