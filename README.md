@@ -6,3 +6,6 @@ Ajouter votre clip sur Hit Lokal
 pip3 install youtube_search
 ```
 
+![alt text](hits1.png) 
+![alt text](hits2.png) 
+![alt text](hits3.png) 
